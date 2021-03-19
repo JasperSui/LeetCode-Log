@@ -1,5 +1,8 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        # Time: O(N^2 * 2^N)
+        # Space: O(2^N)
+        
         res = []
         def dfs(cur, path):
             if cur == len(graph) - 1: res.append(path)

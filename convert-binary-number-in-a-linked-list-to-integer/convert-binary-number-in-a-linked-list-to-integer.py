@@ -7,8 +7,17 @@ class Solution:
     def getDecimalValue(self, head: ListNode) -> int:
         # Time: O(N)
         # Space: O(1)
-        res = []
+        
+        # # Solution 1 32ms
+        # res = []
+        # while head:
+        #     res.append(str(head.val))
+        #     head = head.next
+        # return int(''.join(res), 2)
+        
+        # Solution 2
+        ans = 0
         while head:
-            res.append(str(head.val))
+            ans = 2*ans + head.val
             head = head.next
-        return int(''.join(res), 2)
+        return ans

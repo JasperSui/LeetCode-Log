@@ -1,7 +1,7 @@
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
         # Time: O(N)
-        # Space: O(1)
+        # Space: O(N)
         ans = 0
         x1, y1 = points.pop()
         while points:

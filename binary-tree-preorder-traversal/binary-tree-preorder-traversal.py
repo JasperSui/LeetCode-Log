@@ -9,17 +9,27 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
-        # # Recursive
+        # # Recursive 1
         # return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right) if root else []
-    
-        # Iterative
-        if not root: return []
-        res, stack = [], [root]
-        while stack:
-            curr = stack.pop()
-            res.append(curr.val)
-            if curr.right: stack.append(curr.right)
-            if curr.left: stack.append(curr.left)
-            
+        
+        # Recursive 2
+        res = []
+        def dfs(node):
+            if node:
+                res.append(node.val)
+                dfs(node.left)
+                dfs(node.right)
+        dfs(root)
         return res
+    
+        # # Iterative
+        # if not root: return []
+        # res, stack = [], [root]
+        # while stack:
+        #     curr = stack.pop()
+        #     res.append(curr.val)
+        #     if curr.right: stack.append(curr.right)
+        #     if curr.left: stack.append(curr.left)
+            
+        # return res
         

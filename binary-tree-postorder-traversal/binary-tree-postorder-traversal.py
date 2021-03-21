@@ -9,10 +9,22 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
-        # # Recursive
+        # # Recursive 1
         # return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val] if root else []
         
-        # # Iterative (Cool Version)
+        # Recursive 2
+        res = []
+        def dfs(node):
+            if not node: return
+            dfs(node.left)
+            dfs(node.right)
+            res.append(node.val)
+        dfs(root)
+        return res
+                
+        return 
+        
+        # # Iterative 1 (Cool Version)
         # # Using flag to record if the node is visited
         # res, stack = [], [(root, False)]
         # while stack:
@@ -26,12 +38,13 @@ class Solution:
         #             stack.append((node.left, False))
         # return res
         
-        # Iterative 2
-        res, stack = [], [root]
-        while stack:
-            node = stack.pop()
-            if node:
-                res.append(node.val)
-                stack.append(node.left)
-                stack.append(node.right)
-        return res[::-1]
+        # # Iterative 2
+        # Reverse the result of preorder
+        # res, stack = [], [root]
+        # while stack:
+        #     node = stack.pop()
+        #     if node:
+        #         res.append(node.val)
+        #         stack.append(node.left)
+        #         stack.append(node.right)
+        # return res[::-1]

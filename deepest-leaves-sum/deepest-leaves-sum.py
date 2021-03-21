@@ -6,12 +6,20 @@
 #         self.right = right
 class Solution:
     def deepestLeavesSum(self, root: TreeNode) -> int:
+        # Time: O(N)
+        # Space: O(height)
+        
+        # Iterative
         d = defaultdict(int)
-        def dfs(node, level=0):
-            if not node: return
-            d[level] += node.val
-            dfs(node.left, level+1)
-            dfs(node.right, level+1)
-        dfs(root)
-        _, ans = d.popitem()
-        return ans
+        l = 0
+        stack = [(root, 0)]
+        while stack:
+            node, level = stack.pop()
+            if node:
+                if not node.left and not node.right:
+                    d[level] += node.val
+                    l = max(l, level)
+                stack.append((node.left, level+1))
+                stack.append((node.right, level+1))
+            
+        return d[l]

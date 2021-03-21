@@ -9,19 +9,29 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
-        # # Recursive
+        # # Recursive 1
         # return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
         
-        # Iterative
-        res, stack = [], []
-        cur = root
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            res.append(cur.val)
-            cur = cur.right
+        # Recursive 2
+        res = []
+        def dfs(node):
+            if node:
+                dfs(node.left)
+                res.append(node.val)
+                dfs(node.right)
+        dfs(root)
         return res
+
+        # Iterative
+        # res, stack = [], []
+        # cur = root
+        # while cur or stack:
+        #     while cur:
+        #         stack.append(cur)
+        #         cur = cur.left
+        #     cur = stack.pop()
+        #     res.append(cur.val)
+        #     cur = cur.right
+        # return res
             
         

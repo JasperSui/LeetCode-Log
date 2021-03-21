@@ -21,16 +21,31 @@ class Solution:
         # bfs(root)
         # return list(res.values())
         
-        # Iterative 1
-        res = defaultdict(list)
-        queue = [(root, 0)]
+        # # Iterative 1
+        # res = defaultdict(list)
+        # queue = [(root, 0)]
+        # while queue:
+        #     node, level = queue.pop(0)
+        #     if node:
+        #         res[level].append(node.val)
+        #         for c in node.children:
+        #             queue.append([c, level+1])
+        # return list(res.values())
+    
+        # Iterative 2
+        if not root: return []
+        res = []
+        queue = [root]
         while queue:
-            node, level = queue.pop(0)
-            if node:
-                res[level].append(node.val)
+            tmp = []
+            next_queue = []
+            for node in queue:
+                tmp.append(node.val)
                 for c in node.children:
-                    queue.append([c, level+1])
-        return list(res.values())
+                    next_queue.append(c)
+            res.append(tmp)
+            queue = next_queue
+        return res
                 
         
         

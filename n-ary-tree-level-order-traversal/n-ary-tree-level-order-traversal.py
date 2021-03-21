@@ -11,15 +11,27 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
+        # # Recursive 1
+        # res = defaultdict(list)
+        # def bfs(node, level=0):
+        #     if node:
+        #         res[level].append(node.val)
+        #         for c in node.children:
+        #             bfs(c, level+1)
+        # bfs(root)
+        # return list(res.values())
+        
         # Iterative 1
         res = defaultdict(list)
-        def bfs(node, level=0):
+        queue = [(root, 0)]
+        while queue:
+            node, level = queue.pop(0)
             if node:
                 res[level].append(node.val)
                 for c in node.children:
-                    bfs(c, level+1)
-        bfs(root)
+                    queue.append([c, level+1])
         return list(res.values())
-            
+                
+        
         
             

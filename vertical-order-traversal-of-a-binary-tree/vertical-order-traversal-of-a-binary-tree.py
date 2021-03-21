@@ -19,7 +19,6 @@ class Solution:
                 res[x][y].append(node.val)
                 queue.append((node.left, x-1, y+1))
                 queue.append((node.right, x+1, y+1))
-        print(res)
         res = dict(sorted(res.items()))
         res_2 = []
         for x, d in res.items():

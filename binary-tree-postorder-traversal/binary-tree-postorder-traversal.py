@@ -9,5 +9,19 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
-        # Recursive
-        return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val] if root else []
+        # # Recursive
+        # return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val] if root else []
+        
+        # Iterative (Cool Version)
+        # Using flag to record if the node is visited
+        res, stack = [], [(root, False)]
+        while stack:
+            node, visited = stack.pop()
+            if node:
+                if visited:
+                    res.append(node.val)
+                else:
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
+        return res

@@ -9,13 +9,24 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # Solution 1 (Recursive)
+        # # Solution 1 (Recursive) 828ms
+        # if not root: return 0
+        # d = list(map(self.minDepth, (root.left, root.right)))
+        # return 1 + (min(d) or max(d))
+        
+        # Solution 2 (Iterative, BFS)
         if not root: return 0
-        d = list(map(self.minDepth, (root.left, root.right)))
-        return 1 + (min(d) or max(d))
+        queue = deque([(root, 1)])
+        level = 0
+        while queue:
+            curr, level = queue.popleft()
+            if curr:
+                if not curr.left and not curr.right:
+                    return level
+                queue.append((curr.left, level+1))
+                queue.append((curr.right, level+1))
         
-        
-        # # Solution 3 (Stupid)
+        # # Solution 3 (Stupid, DFS) 612ms
         # self.min_depth = 50000000
         # if not root: return 0
         # def dfs(node, depth):

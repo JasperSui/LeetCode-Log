@@ -6,12 +6,11 @@
 #         self.right = right
 class Solution:
     def __init__(self):
-        self.v = 100
+        self.v = None
 
     def isUnivalTree(self, root: TreeNode) -> bool:
         if not root: return True
-        print(root.val, self.v)
-        if root.val != self.v and self.v != 100: return False
+        if self.v and root.val != self.v: return False
         else:
             self.v = root.val
             return self.isUnivalTree(root.left) and self.isUnivalTree(root.right)

@@ -9,13 +9,26 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # DFS
+        # # DFS
+        # res = []
+        # def dfs(node, l):
+        #     if not node: return
+        #     l = [*l, str(node.val)]
+        #     if not node.left and not node.right: res.append(l)
+        #     dfs(node.left, l)
+        #     dfs(node.right, l)
+        # dfs(root, [])
+        # return sum(map(lambda x: int(''.join(x)), res))
+        
+        # Iterative
+        stack = [(root, [])]
         res = []
-        def dfs(node, l):
-            if not node: return
-            l = [*l, str(node.val)]
-            if not node.left and not node.right: res.append(l)
-            dfs(node.left, l)
-            dfs(node.right, l)
-        dfs(root, [])
+        while stack:
+            curr, l = stack.pop()
+            if curr:
+                l = [*l, str(curr.val)]
+                if not curr.left and not curr.right: res.append(l)
+                else:
+                    stack.append((curr.left, l))
+                    stack.append((curr.right, l))
         return sum(map(lambda x: int(''.join(x)), res))

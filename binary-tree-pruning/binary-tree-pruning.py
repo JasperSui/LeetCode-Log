@@ -16,3 +16,20 @@ class Solution:
         if not root.left and not root.right and not root.val: return None
         return root
         
+        # Iterative
+        stack = [(root, False)]
+        while stack:
+            curr, visited = stack.pop()
+            if not visited:
+                stack.append((curr, True))
+                stack.append((curr.left, False))
+                stack.append((curr.right, False))
+            else:
+                if curr.left and curr.left.val == -1:
+                    curr.left = None
+                if curr.right and curr.right.val == -1:
+                    curr.right = None
+                if not curr.left and not curr.right:
+                    if curr.val == 0:
+                        curr.val = -1
+        return root

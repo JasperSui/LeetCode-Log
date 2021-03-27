@@ -14,11 +14,10 @@ class Solution:
         def dfs(node, s, l):
             if not node: return
             s += node.val
-            l1 = [*l, node.val]
-            l2 = [*l, node.val]
-            if not node.left and not node.right and s == targetSum: res.append(l1)
-            if node.left: dfs(node.left, s, l1)
-            if node.right: dfs(node.right, s, l2)
+            l = [*l, node.val]
+            if not node.left and not node.right and s == targetSum: res.append(l)
+            if node.left: dfs(node.left, s, l)
+            if node.right: dfs(node.right, s, l)
         dfs(root, 0, [])
         return res
             

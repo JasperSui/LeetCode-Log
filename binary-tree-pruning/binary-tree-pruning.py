@@ -9,27 +9,29 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # Recursion
-        if not root: return None
-        root.left = self.pruneTree(root.left)
-        root.right = self.pruneTree(root.right)
-        if not root.left and not root.right and not root.val: return None
-        return root
+        # # Recursion
+        # if not root: return None
+        # root.left = self.pruneTree(root.left)
+        # root.right = self.pruneTree(root.right)
+        # if not root.left and not root.right and not root.val: return None
+        # return root
         
         # Iterative
-        stack = [(root, False)]
+        if not root: return root
+        fr = TreeNode(1) # Fake root
+        fr.left = root
+        stack = [(0, root, fr)] # (seen, node, parent)
         while stack:
-            curr, visited = stack.pop()
-            if not visited:
-                stack.append((curr, True))
-                stack.append((curr.left, False))
-                stack.append((curr.right, False))
+            seen, node, parent = stack.pop()
+            if not node: continue
+            if not seen:
+                stack += [(1, node, parent)]
+                stack += [(0, node.left, node)]
+                stack += [(0, node.right, node)]
             else:
-                if curr.left and curr.left.val == -1:
-                    curr.left = None
-                if curr.right and curr.right.val == -1:
-                    curr.right = None
-                if not curr.left and not curr.right:
-                    if curr.val == 0:
-                        curr.val = -1
-        return root
+                if node.val == 0 and not node.left and not node.right:
+                    if parent.left == node:
+                        parent.left = None
+                    else:
+                        parent.right = None
+        return fr.left

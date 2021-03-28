@@ -6,6 +6,10 @@
 #         self.right = right
 class Solution:
     def findFrequentTreeSum(self, root: TreeNode) -> List[int]:
+        # Time: O(n)
+        # Space: O(h)
+        
+        # Recursive
         if not root: return []
         res = []
         def dfs(node):

@@ -10,13 +10,26 @@ class Solution:
         # Space: O(height)
         
         # Recursive
+        if root is None: return 0
         self.ans = 0
-        def depth(node):
-            if not node: return 0
-            l_len, r_len = depth(node.left), depth(node.right)
-            l = l_len + 1 if node.left and node.left.val == node.val else 0
-            r = r_len + 1 if node.right and node.right.val == node.val else 0
-            self.ans = max(self.ans, l+r)
-            return max(l, r)
-        depth(root)
+        
+        def dfs(node):
+            part_path = 0
+            total_path = 0
+            if node:
+                if node.left:
+                    l = dfs(node.left)
+                    if node.val == node.left.val:
+                        total_path = part_path = 1 + l
+                
+                if node.right:
+                    r = dfs(node.right)
+                    if node.val == node.right.val:
+                        part_path = max(part_path, 1 + r)
+                        total_path += 1 + r
+                
+                self.ans = max(self.ans, total_path)
+            return part_path
+        dfs(root)
         return self.ans
+                

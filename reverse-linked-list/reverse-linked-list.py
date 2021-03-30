@@ -8,8 +8,15 @@ class Solution:
         # Time: O(n)
         # Space: O(n)
         
+        # # Iterative
+        # curr, prev = head, None
+        # while curr:
+        #     curr.next, prev, curr = prev, curr, curr.next
+        # return prev
+        
         # Recursive
-        curr, prev = head, None
-        while curr:
-            curr.next, prev, curr = prev, curr, curr.next
-        return prev
+        if not head:
+            return prev
+        n = head.next
+        head.next = prev
+        return self.reverseList(n, head)

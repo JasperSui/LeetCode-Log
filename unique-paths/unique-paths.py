@@ -1,5 +1,7 @@
 class Solution:
     def uniquePaths(self, m: int, n: int, dp={}) -> int:
+        # Time: O(mn)
+        # Space: O(m+n)
         if f'{m},{n}' in dp: return dp[f'{m},{n}']
         if m == 1 and n == 1: return 1
         if m == 0 or n == 0: return 0

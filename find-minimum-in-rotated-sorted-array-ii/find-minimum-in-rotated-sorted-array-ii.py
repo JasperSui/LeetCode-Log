@@ -6,6 +6,6 @@ class Solution:
             if nums[mid] > nums[high]: low = mid + 1
             elif nums[mid] < nums[high]: high = mid
             
-            # Important part for duplicated
+            # Important part for duplicated (means nums[mid] == nums[high])
             else: high -= 1
         return nums[low]

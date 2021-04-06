@@ -2,6 +2,8 @@ class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         
         # Binary Search
+        # Time: O(nlog(maxP))
+        # Space: O(1)
         low, high = 1, max(piles)
         while low < high:
             mid = (low+high) // 2

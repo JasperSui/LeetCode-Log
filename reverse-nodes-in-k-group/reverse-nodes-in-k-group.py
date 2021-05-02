@@ -5,9 +5,9 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        if not head: return None
-        i = 0
+        if not head: return
         a = b = head
+        i = 0
         while b and i < k:
             i += 1
             b = b.next
@@ -17,7 +17,8 @@ class Solution:
         return new_head
         
     def reverse(self, a, b):
-        curr, prev = a, None
+        curr = a
+        prev = None
         while curr != b:
             curr.next, prev, curr = prev, curr, curr.next
         return prev

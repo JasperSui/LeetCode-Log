@@ -9,19 +9,17 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        self.first_element = None
-        self.second_element = None
+        self.first_node, self.second_node = None, None
         self.prev = TreeNode(float('-inf'))
-        
         def inorder(node):
             if not node: return
             inorder(node.left)
             if self.prev.val >= node.val:
-                if not self.first_element:
-                    self.first_element = self.prev
-                if self.first_element:
-                    self.second_element = node
+                if self.first_node is None:
+                    self.first_node = self.prev
+                if self.first_node:
+                    self.second_node = node
             self.prev = node
             inorder(node.right)
         inorder(root)
-        self.first_element.val, self.second_element.val = self.second_element.val, self.first_element.val
+        self.first_node.val, self.second_node.val = self.second_node.val, self.first_node.val

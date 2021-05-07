@@ -6,13 +6,14 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
-        map_inorder = {}
-        for i, v in enumerate(inorder): map_inorder[v] = i
-        def recur(low, high):
-            if low > high: return None
-            x = TreeNode(postorder.pop())
-            mid = map_inorder[x.val]
-            x.right = recur(mid+1, high)
-            x.left = recur(low, mid-1)
-            return x
-        return recur(0, len(inorder)-1)
+        d = {}
+        for i, v in enumerate(inorder):
+            d[v] = i
+        def build(low, high):
+            if low > high: return
+            root = TreeNode(postorder.pop())
+            mid = d[root.val]
+            root.right = build(mid+1, high)
+            root.left = build(low, mid-1)
+            return root
+        return build(0, len(postorder)-1)

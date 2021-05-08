@@ -12,6 +12,6 @@ class Solution:
             '9': 'wxyz',
             '0': ' '}
         res = [''] if digits else []
-        for digit in digits:
-            res = [p + q for p in res for q in mapping[digit]]
+        for d in digits:
+            res = [p + q for p in res for q in mapping[d]]
         return res

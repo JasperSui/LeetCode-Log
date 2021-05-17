@@ -10,33 +10,17 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        # Time: O(n)
-        # Space: O(n)
-        
-        # Iterative
-        # if not root: return root
-        # next_level = deque([root])
-        # while next_level:
-        #     curr_level = deque()
-        #     n = None
-        #     while next_level:
-        #         curr = next_level.popleft()
-        #         if curr.right: curr_level.append(curr.right)
-        #         if curr.left: curr_level.append(curr.left)
-        #         curr.next = n
-        #         n = curr
-        #     next_level = curr_level
-        # return root
-        
-        # Recursive
-        if not root: return None
-        self.connect_left_and_right(root.left, root.right)
+        self.res = defaultdict(list)
+        def traverse(node, level=0):
+            if not node: return
+            traverse(node.left, level+1)
+            self.res[level].append(node)
+            traverse(node.right, level+1)
+        traverse(root)
+        for level_list in self.res.values():
+            for i in range(len(level_list)):
+                if i == len(level_list) - 1:
+                    level_list[i].next = None
+                else:
+                    level_list[i].next = level_list[i+1]
         return root
-    
-    def connect_left_and_right(self, n1, n2):
-        if not n1 or not n2: return None
-        n1.next = n2
-        self.connect_left_and_right(n1.left, n1.right)
-        self.connect_left_and_right(n2.left, n2.right)
-        self.connect_left_and_right(n1.right, n2.left)
-            

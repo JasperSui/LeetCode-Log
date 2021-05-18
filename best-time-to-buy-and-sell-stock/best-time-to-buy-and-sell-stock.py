@@ -1,11 +1,11 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if not prices: return 0
-        dp_i_0, dp_i_1 = 0, float('-inf')
-        for i in range(len(prices)):
-            dp_i_0 = max(dp_i_0, dp_i_1 + prices[i])
-            dp_i_1 = max(dp_i_1, - prices[i])
-        return dp_i_0
+        # if not prices: return 0
+        # dp_i_0, dp_i_1 = 0, float('-inf')
+        # for i in range(len(prices)):
+        #     dp_i_0 = max(dp_i_0, dp_i_1 + prices[i])
+        #     dp_i_1 = max(dp_i_1, - prices[i])
+        # return dp_i_0
         
         # if not prices: return 0
         # min_price, max_profit = prices[0], 0
@@ -38,3 +38,11 @@ class Solution:
         #     min_price = min(min_price, prices[i])
         #     max_profit = max(max_profit, prices[i] - min_price)
         # return max_profit
+        
+        if not prices:
+            return 0
+        min_price, max_profit = prices[0], 0
+        for price in prices:
+            min_price = min(min_price, price)
+            max_profit = max(max_profit, price - min_price)
+        return max_profit

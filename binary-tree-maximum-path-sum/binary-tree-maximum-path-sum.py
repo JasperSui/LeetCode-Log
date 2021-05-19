@@ -9,12 +9,26 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # Recursive
+        # # Recursive
+        # if not root: return 0
+        # ans = -1001
+        # def dfs(node):
+        #     if not node: return 0
+        #     nonlocal ans
+        #     l = max(dfs(node.left), 0)
+        #     r = max(dfs(node.right), 0)
+        #     s = node.val + l + r
+        #     ans = max(ans, s)
+        #     return node.val + max(l, r)
+        # dfs(root)
+        # return ans
+        
+        
         if not root: return 0
         ans = -1001
         def dfs(node):
-            if not node: return 0
             nonlocal ans
+            if not node: return 0
             l = max(dfs(node.left), 0)
             r = max(dfs(node.right), 0)
             s = node.val + l + r

@@ -9,20 +9,29 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
+        res, stack = [], [root]
+        while stack:
+            curr = stack.pop()
+            if curr:
+                res.append(curr.val)
+                stack.append(curr.left)
+                stack.append(curr.right)
+        return res[::-1]
+        
         # # Recursive 1
         # return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val] if root else []
         
-        # Recursive 2
-        res = []
-        def dfs(node):
-            if not node: return
-            dfs(node.left)
-            dfs(node.right)
-            res.append(node.val)
-        dfs(root)
-        return res
+#         # Recursive 2
+#         res = []
+#         def dfs(node):
+#             if not node: return
+#             dfs(node.left)
+#             dfs(node.right)
+#             res.append(node.val)
+#         dfs(root)
+#         return res
                 
-        return 
+#         return 
         
         # # Iterative 1 (Cool Version)
         # # Using flag to record if the node is visited

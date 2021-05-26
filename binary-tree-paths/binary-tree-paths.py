@@ -9,17 +9,28 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # DFS
-        res = []
+        self.res = []
         def dfs(node, l):
             if not node: return
             l = [*l, str(node.val)]
-            if not node.left and not node.right: res.append('->'.join(l))
+            if not node.left and not node.right: self.res.append('->'.join(l))
             else:
                 dfs(node.left, l)
                 dfs(node.right, l)
         dfs(root, [])
-        return res
+        return self.res
+    
+        # DFS
+        # res = []
+        # def dfs(node, l):
+        #     if not node: return
+        #     l = [*l, str(node.val)]
+        #     if not node.left and not node.right: res.append('->'.join(l))
+        #     else:
+        #         dfs(node.left, l)
+        #         dfs(node.right, l)
+        # dfs(root, [])
+        # return res
         
         # # Iterative
         # res = []

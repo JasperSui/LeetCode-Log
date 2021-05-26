@@ -11,8 +11,15 @@ class Solution:
         # Space: O(height)
         
         # Recursive
-        if any((not root, root == p, root == q)): return root
+        # if any((not root, root == p, root == q)): return root
+        # l = self.lowestCommonAncestor(root.left, p, q)
+        # r = self.lowestCommonAncestor(root.right, p, q)
+        # if not l or not r: return l or r
+        # return root
+        
+        if not root or p == root or q == root: return root
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
-        if not l or not r: return l or r
-        return root
+        
+        if l and r: return root
+        return l or r

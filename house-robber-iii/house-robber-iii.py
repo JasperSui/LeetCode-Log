@@ -23,12 +23,22 @@ class Solution:
 #         return ans
 
     # Genius way
-    def rob(self, root: TreeNode) -> int:
-        return max(self.rob_sub(root))
+#     def rob(self, root: TreeNode) -> int:
+#         return max(self.rob_sub(root))
 
-    def rob_sub(self, root):
+#     def rob_sub(self, root):
+#         if not root: return (0, 0)
+#         left_1, left_2 = self.rob_sub(root.left)
+#         right_1, right_2 = self.rob_sub(root.right)
+#         res = (max(left_1, left_2) + max(right_1, right_2), root.val + left_1 + right_1)
+#         return res
+
+    def rob(self, root: TreeNode) -> int:
+        return max(self.rub_sub(root))
+    
+    def rub_sub(self, root):
         if not root: return (0, 0)
-        left_1, left_2 = self.rob_sub(root.left)
-        right_1, right_2 = self.rob_sub(root.right)
-        res = (max(left_1, left_2) + max(right_1, right_2), root.val + left_1 + right_1)
+        left = self.rub_sub(root.left)
+        right = self.rub_sub(root.right)
+        res = (max(left) + max(right), root.val + left[0] + right[0])
         return res

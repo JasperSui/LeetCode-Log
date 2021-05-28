@@ -7,12 +7,10 @@
 class Solution:
     def sumOfLeftLeaves(self, root: TreeNode) -> int:
         self.ans = 0
-        if not root: return 0
-        def dfs(node, is_left=False):
+        def dfs(node, is_left=True):
             if not node: return
-            dfs(node.left, True)
+            dfs(node.left)
             if is_left and not node.left and not node.right: self.ans += node.val
             dfs(node.right, False)
-        dfs(root)
+        dfs(root, False)
         return self.ans
-            

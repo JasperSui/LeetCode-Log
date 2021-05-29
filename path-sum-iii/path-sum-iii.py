@@ -10,22 +10,41 @@ class Solution:
         if not node: return
         s += node.val
         old = s - self.t
-        
         self.ans += d.get(old, 0)
         d[s] = d.get(s, 0) + 1
-        
         self.dfs(node.left, s, d)
         self.dfs(node.right, s, d)
         d[s] -= 1
         
+    
     def pathSum(self, root: TreeNode, sum: int) -> int:
-        # Time: O(n)
-        # Space: O(h)
-        
-        # dfs
         self.ans = 0
         self.t = sum
         d = {0: 1}
-        
         self.dfs(root, 0, d)
         return self.ans
+        
+        
+        
+#         if not node: return
+#         s += node.val
+#         old = s - self.t
+#         print(d, s, self.t)
+#         self.ans += d.get(old, 0)
+#         d[s] = d.get(s, 0) + 1
+        
+#         self.dfs(node.left, s, d)
+#         self.dfs(node.right, s, d)
+#         d[s] -= 1
+        
+#     def pathSum(self, root: TreeNode, sum: int) -> int:
+#         # Time: O(n)
+#         # Space: O(h)
+        
+#         # dfs
+#         self.ans = 0
+#         self.t = sum
+#         d = {0: 1}
+        
+#         self.dfs(root, 0, d)
+#         return self.ans

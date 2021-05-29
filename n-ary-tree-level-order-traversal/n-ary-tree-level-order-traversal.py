@@ -11,6 +11,29 @@ class Solution:
         # Time: O(N)
         # Space: O(height)
         
+        # self.d = defaultdict(list)
+        # def bfs(node, level=0):
+        #     if not node: return
+        #     self.d[level].append(node.val)
+        #     for c in node.children:
+        #         bfs(c, level+1)
+        # bfs(root)
+        # return list(self.d.values())
+        if not root: return []
+        res = []
+        stack = [root]
+        while stack:
+            temp = []
+            next_stack = []
+            while stack:
+                curr = stack.pop()
+                temp.append(curr.val)
+                for c in curr.children:
+                    next_stack = [c] + next_stack
+            res.append(temp)
+            stack = next_stack
+        return res
+        
         # # Recursive 1
         # res = defaultdict(list)
         # def bfs(node, level=0):
@@ -33,19 +56,19 @@ class Solution:
         # return list(res.values())
     
         # Iterative 2
-        if not root: return []
-        res = []
-        queue = [root]
-        while queue:
-            tmp = []
-            next_queue = []
-            for node in queue:
-                tmp.append(node.val)
-                for c in node.children:
-                    next_queue.append(c)
-            res.append(tmp)
-            queue = next_queue
-        return res
+        # if not root: return []
+        # res = []
+        # queue = [root]
+        # while queue:
+        #     tmp = []
+        #     next_queue = []
+        #     for node in queue:
+        #         tmp.append(node.val)
+        #         for c in node.children:
+        #             next_queue.append(c)
+        #     res.append(tmp)
+        #     queue = next_queue
+        # return res
                 
         
         

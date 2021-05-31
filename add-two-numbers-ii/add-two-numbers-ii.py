@@ -13,14 +13,13 @@ class Solution:
         while l2:
             s2.append(l2.val)
             l2 = l2.next
-
+        
         head = None
         while s1 or s2 or carry:
-            d1 = s1.pop() if s1 else 0
-            d2 = s2.pop() if s2 else 0
-            carry, digit = divmod(d1 + d2 + carry, 10)
+            v1 = s1.pop() if s1 else 0
+            v2 = s2.pop() if s2 else 0
+            carry, digit = divmod(v1 + v2 + carry, 10)
             new_head = ListNode(digit)
             new_head.next = head
             head = new_head
         return head
-            

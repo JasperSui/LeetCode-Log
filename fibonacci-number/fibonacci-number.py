@@ -1,6 +1,7 @@
 class Solution:
-    def fib(self, N: int, dp={}) -> int:
-        if N in dp: return dp[N]
-        if N in (0, 1): return N
-        dp[N] = self.fib(N-1, dp) + self.fib(N-2, dp)
-        return dp[N]
+    def fib(self, n: int) -> int:
+        d = {}
+        if n in d: return d[n]
+        if n == 0 or n == 1: return n
+        d[n] = self.fib(n-1) + self.fib(n-2)
+        return d[n]

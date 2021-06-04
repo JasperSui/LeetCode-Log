@@ -9,12 +9,24 @@ class Solution:
         # Time: O(n)
         # Space: O(height)
         
-        # Recursive
+        # Recursive 2
+        
         self.ans = 0
-        def depth(node):
-            if not node: return 0
-            l, r = depth(node.left), depth(node.right)
-            self.ans = max(self.ans, l+r)
+        def height(node):
+            if not node: return -1
+            
+            l, r = height(node.left), height(node.right)
+            self.ans = max(self.ans, 2+l+r)
             return 1 + max(l, r)
-        depth(root)
+        height(root)
         return self.ans
+        
+        # # Recursive
+        # self.ans = 0
+        # def depth(node):
+        #     if not node: return 0
+        #     l, r = depth(node.left), depth(node.right)
+        #     self.ans = max(self.ans, l+r)
+        #     return 1 + max(l, r)
+        # depth(root)
+        # return self.ans

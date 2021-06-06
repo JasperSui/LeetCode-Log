@@ -1,36 +1,47 @@
+class Node:
+    def __init__(self, k, v):
+        self.key = k
+        self.val = v
+        self.prev = None
+        self.next = None
+
 class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.dic = dict()
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
 
-    def __init__(self, capacity: int):
-        self.size = capacity
-        self.d = dict()
-        self.queue = deque()
+    def get(self, key):
+        if key in self.dic:
+            n = self.dic[key]
+            self._remove(n)
+            self._add(n)
+            return n.val
+        return -1
 
-    def get(self, key: int) -> int:
-        try:
-            value = self.d[key]
-        except:
-            value = -1
-        else:
-            self.queue.remove(key)
-            self.queue.appendleft(key)
-        return value
+    def put(self, key, value):
+        if key in self.dic:
+            self._remove(self.dic[key])
+        n = Node(key, value)
+        self._add(n)
+        self.dic[key] = n
+        if len(self.dic) > self.capacity:
+            n = self.head.next
+            self._remove(n)
+            del self.dic[n.key]
 
-    def put(self, key: int, value: int) -> None:
-        if len(self.queue) == self.size:
-            if key in self.queue:
-                self.queue.remove(key)
-            else:
-                deleted_key = self.queue.pop()
-                del self.d[deleted_key]
-            
-        else:
-            if key in self.queue:
-                self.queue.remove(key)
-        self.queue.appendleft(key)
-        self.d[key] = value
+    def _remove(self, node):
+        p = node.prev
+        n = node.next
+        p.next = n
+        n.prev = p
 
-
-# Your LRUCache object will be instantiated and called as such:
-# obj = LRUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
+    def _add(self, node):
+        p = self.tail.prev
+        p.next = node
+        self.tail.prev = node
+        node.prev = p
+        node.next = self.tail

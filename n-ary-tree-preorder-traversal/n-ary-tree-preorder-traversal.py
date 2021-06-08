@@ -8,6 +8,22 @@ class Node:
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        self.res = []
+        def dfs(node):
+            if not node: return
+            self.res.append(node.val)
+            for c in node.children:
+                dfs(c)
+        dfs(root)
+        return self.res
+        
+        
+        
+        
+        
+        
+        
+        
         # Time: O(N)
         # Space: O(height)
         

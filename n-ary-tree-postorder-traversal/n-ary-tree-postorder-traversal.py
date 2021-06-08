@@ -8,6 +8,26 @@ class Node:
 
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
+        self.res = []
+        def dfs(node):
+            if not node: return
+            for c in node.children:
+                dfs(c)
+            self.res.append(node.val)
+        dfs(root)
+        return self.res
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # Time: O(N)
         # Space: O(height)
         

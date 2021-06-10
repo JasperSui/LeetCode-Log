@@ -16,5 +16,17 @@ class Solution:
             return id
         getid(root)
         return [roots[0] for roots in trees.values() if roots[1:]]
+        
+        
+        # treeid = defaultdict()
+        # trees = defaultdict(list)
+        # treeid.default_factory = treeid.__len__
+        # def getid(node):
+        #     if not node: return
+        #     id = treeid[node.val, getid(node.left), getid(node.right)]
+        #     trees[id].append(node)
+        #     return id
+        # getid(root)
+        # return [roots[0] for roots in trees.values() if roots[1:]]
             
     

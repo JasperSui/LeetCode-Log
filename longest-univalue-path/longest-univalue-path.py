@@ -6,12 +6,8 @@
 #         self.right = right
 class Solution:
     def longestUnivaluePath(self, root: TreeNode) -> int:
-        # Time: O(n)
-        # Space: O(height)
-        
-        # Recursive
-        if root is None: return 0
-        self.ans = 0
+        if not root: return 0
+        self.ans = 0 
         
         def dfs(node):
             part_path = 0
@@ -21,15 +17,40 @@ class Solution:
                     l = dfs(node.left)
                     if node.val == node.left.val:
                         total_path = part_path = 1 + l
-                
                 if node.right:
                     r = dfs(node.right)
                     if node.val == node.right.val:
-                        part_path = max(part_path, 1 + r)
+                        part_path = max(part_path, 1+r)
                         total_path += 1 + r
-                
                 self.ans = max(self.ans, total_path)
             return part_path
         dfs(root)
         return self.ans
+        
+        # Time: O(n)
+        # Space: O(height)
+        
+#         # Recursive
+#         if root is None: return 0
+#         self.ans = 0
+        
+#         def dfs(node):
+#             part_path = 0
+#             total_path = 0
+#             if node:
+#                 if node.left:
+#                     l = dfs(node.left)
+#                     if node.val == node.left.val:
+#                         total_path = part_path = 1 + l
+                
+#                 if node.right:
+#                     r = dfs(node.right)
+#                     if node.val == node.right.val:
+#                         part_path = max(part_path, 1 + r)
+#                         total_path += 1 + r
+                
+#                 self.ans = max(self.ans, total_path)
+#             return part_path
+#         dfs(root)
+#         return self.ans
                 

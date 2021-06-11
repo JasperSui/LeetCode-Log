@@ -12,13 +12,14 @@ class Solution:
                 root = root.right
             elif root.val > R:
                 root = root.left
+        
         stack = [root]
         while stack:
             curr = stack[-1]
-            if curr is None:
+            if not curr:
                 stack.pop()
                 continue
-            updated = 0
+            updated = 0 
             if curr.left and curr.left.val < L:
                 curr.left = curr.left.right
                 updated += 1

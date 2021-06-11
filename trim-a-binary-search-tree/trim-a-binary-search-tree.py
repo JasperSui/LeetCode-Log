@@ -6,6 +6,44 @@
 #         self.right = right
 class Solution:
     def trimBST(self, root: TreeNode, L: int, R: int) -> TreeNode:
+        
+        while root and not (L <= root.val <= R):
+            if root.val < L:
+                root = root.right
+            elif root.val > R:
+                root = root.left
+        stack = [root]
+        while stack:
+            curr = stack[-1]
+            if curr is None:
+                stack.pop()
+                continue
+            updated = 0
+            if curr.left and curr.left.val < L:
+                curr.left = curr.left.right
+                updated += 1
+            if curr.right and curr.right.val > R:
+                curr.right = curr.right.left
+                updated += 1
+            if not updated:
+                stack.pop()
+                stack.append(curr.left)
+                stack.append(curr.right)
+        return root
+        
+        # def trim(node):
+        #     if not node: return
+        #     if node.val > R: return trim(node.left)
+        #     if node.val < L: return trim(node.right)
+        #     node.left = trim(node.left)
+        #     node.right = trim(node.right)
+        #     return node
+        # trim(root)
+        # return root
+        
+        
+        
+        
         # Time: O(n)
         # Space: O(height)
         

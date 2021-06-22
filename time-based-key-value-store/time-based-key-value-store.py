@@ -10,12 +10,13 @@ class TimeMap:
         self.d[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
-        data = self.d.get(key, "")
+        data = self.d[key]
+        if not self.d[key]: return ""
         low, high = 0, len(data)
         while low < high:
-            mid = (low+high) // 2
+            mid = low + (high - low) // 2
             if data[mid][0] <= timestamp: low = mid + 1
-            elif data[mid][0] > timestamp: high = mid
+            else: high = mid
         return "" if high == 0 else data[high-1][1]
 
 

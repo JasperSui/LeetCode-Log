@@ -6,6 +6,20 @@
 #         self.right = right
 class Solution:
     def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        self.temp = []
+        def dfs(node, x=0, y=0):
+            if not node: return
+            self.temp.append((node.val, x, y))
+            dfs(node.left, x-1, y+1)
+            dfs(node.right, x+1, y+1)
+        dfs(root)
+        self.temp.sort(key=lambda x: (x[1], x[2], x[0]))
+        res = defaultdict(list)
+        for v, x, _ in self.temp:
+            res[x].append(v)
+        return res.values()
+        
+        
         # Time: O(NlogN)
         # Sapce: O(N)
         

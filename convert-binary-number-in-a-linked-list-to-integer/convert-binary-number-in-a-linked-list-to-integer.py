@@ -5,19 +5,8 @@
 #         self.next = next
 class Solution:
     def getDecimalValue(self, head: ListNode) -> int:
-        # Time: O(N)
-        # Space: O(1)
-        
-        # # Solution 1 32ms
-        # res = []
-        # while head:
-        #     res.append(str(head.val))
-        #     head = head.next
-        # return int(''.join(res), 2)
-        
-        # Solution 2
-        ans = 0
+        res = ""
         while head:
-            ans = 2*ans + head.val
+            res += str(head.val)
             head = head.next
-        return ans
+        return int(res, 2)

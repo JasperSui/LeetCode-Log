@@ -1,6 +1,6 @@
 class Solution:
     def longestSubsequence(self, arr: List[int], difference: int) -> int:
-        count = {}
+        res = {}
         for n in arr:
-            count[n] = 1 + count.get(n - difference, 0)
-        return max(count.values())
+            res[n] = res.get(n-difference, 0) + 1
+        return max(res.values())

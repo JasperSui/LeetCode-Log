@@ -1,11 +1,6 @@
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
-        # Time: O(N)
-        # Space: O(N)
         ans = 0
-        x1, y1 = points.pop()
-        while points:
-            x2, y2 = points.pop()
-            ans += max(abs(x2-x1), abs(y2-y1))
-            x1, y1 = x2, y2
+        for i in range(1, len(points)):
+            ans += max(abs(points[i][0] - points[i-1][0]), abs(points[i][1] - points[i-1][1]))
         return ans

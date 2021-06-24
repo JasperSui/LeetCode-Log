@@ -6,6 +6,50 @@
 #         self.right = right
 class Solution:
     def deepestLeavesSum(self, root: TreeNode) -> int:
+        self.deepest = 0
+        self.ans = 0
+        def dfs(node, level=1):
+            if not node: return
+            dfs(node.left, level+1)
+            if not node.left and not node.right:
+                if level == self.deepest:
+                    self.ans += node.val
+                elif level > self.deepest:
+                    self.ans = node.val
+                    self.deepest = level
+            dfs(node.right, level+1)
+        dfs(root)
+        return self.ans
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # Time: O(N)
         # Space: O(height)
         

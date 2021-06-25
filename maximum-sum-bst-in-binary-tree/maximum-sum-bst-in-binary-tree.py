@@ -9,28 +9,18 @@ class Solution:
         self.ans = 0
     
     def maxSumBST(self, root: TreeNode) -> int:
-        # Time: O(n)
-        # Space: O(h)
-        self.traverse(root)
+        self.is_valid_bst(root)
         return self.ans
     
-    def traverse(self, node):
-        """
-        res[0]: is bst
-        res[1]: max value of node
-        res[2]: min value of node
-        res[3]: sum of node
-        """
-        if not node: return [1, float('inf'), float('-inf'), 0]
-        left = self.traverse(node.left)
-        right = self.traverse(node.right)
+    def is_valid_bst(self, node):
+        if not node: return [True, float('inf'), float('-inf'), 0]
+        l = self.is_valid_bst(node.left)
+        r = self.is_valid_bst(node.right)
         res = [0] * 4
-        
-        # is bst
-        if left[0] == 1 and right[0] == 1 and node.val > left[2] and node.val < right[1]:
-            res[0] = 1
-            res[1] = min(left[1], node.val)
-            res[2] = max(right[2], node.val)
-            res[3] = left[3] + right[3] + node.val
+        if l[0] and r[0] and l[2] < node.val and r[1] > node.val:
+            res[0] = True
+            res[1] = min(l[1], node.val)
+            res[2] = max(r[2], node.val)
+            res[3] = l[3] + r[3] + node.val
             self.ans = max(self.ans, res[3])
         return res

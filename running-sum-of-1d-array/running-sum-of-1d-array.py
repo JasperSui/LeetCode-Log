@@ -1,10 +1,7 @@
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
-        # Time: O(N)
-        # Space: O(N)
-        r = 0
-        res = []
-        for n in nums:
-            res.append(n+r)
-            r += n
-        return res
+        running_sum = 0
+        for i in range(len(nums)):
+            running_sum += nums[i]
+            nums[i] = running_sum
+        return nums

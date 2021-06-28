@@ -1,13 +1,9 @@
 class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
-        # Time: O(N*W), N = len(words), W = length of longest word
-        # Space: O(1)
-        ans = 0
-        allowed = set(list(allowed))
-        for word in words:
-            ans += 1
-            for c in word:
-                if c not in allowed:
-                    ans -= 1
-                    break
-        return ans
+        allowed = set(allowed)
+        def check(s):
+            for c in s:
+                if not c in allowed:
+                    return False
+            return True
+        return sum([check(word) for word in words])

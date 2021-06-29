@@ -16,6 +16,6 @@ class Solution:
                 carry += l2.val
                 l2 = l2.next
             carry, left = divmod(carry, 10)
-            l3.next = l3 = ListNode(left)
-        
+            l3.next = ListNode(left)
+            l3 = l3.next
         return dummy.next

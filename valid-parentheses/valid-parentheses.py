@@ -1,10 +1,11 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        d = {'(':')', '[':']', '{':'}'}
-        temp = []
+        stack = []
+        d = {"{": "}", "[":"]", "(":")"}
         for c in s:
-            if c in d: temp.append(d[c])
+            if c in ('(', '[', '{'): stack.append(c)
             else:
-                if not temp or temp.pop() != c: return False
-        return True if not temp else False
-            
+                if not stack or d[stack[-1]] != c: return False
+                else:
+                    stack.pop()
+        return not stack

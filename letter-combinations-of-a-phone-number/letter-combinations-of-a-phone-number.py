@@ -13,5 +13,9 @@ class Solution:
             '0': ' '}
         res = [''] if digits else []
         for d in digits:
-            res = [p + q for p in res for q in mapping[d]]
+            temp = []
+            for q in mapping[d]:
+                for p in res:
+                    temp.append(p+q)
+            res = temp
         return res

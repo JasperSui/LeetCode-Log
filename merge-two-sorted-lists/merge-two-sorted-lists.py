@@ -9,18 +9,20 @@ class Solution:
         dummy = l3 = ListNode()
         dummy.next = l3
         while l1 or l2:
-            if l1 and l2:
-                if l1.val < l2.val:
+            if not l1:
+                v = l2.val
+                l2 = l2.next
+            
+            elif not l2:
+                v = l1.val
+                l1 = l1.next
+            
+            else:
+                if l1.val <= l2.val:
                     v = l1.val
                     l1 = l1.next
                 else:
                     v = l2.val
                     l2 = l2.next
-            elif l1:
-                v = l1.val
-                l1 = l1.next
-            else:
-                v = l2.val
-                l2 = l2.next
             l3.next = l3 = ListNode(v)
         return dummy.next

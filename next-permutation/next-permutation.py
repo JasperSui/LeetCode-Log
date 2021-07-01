@@ -13,8 +13,9 @@ class Solution:
         while j > 0 and nums[j] <= nums[k]:
             j -= 1
         nums[j], nums[k] = nums[k], nums[j]
-        l, r = k+1, len(nums)-1
-        while l < r:
-            nums[l], nums[r] = nums[r], nums[l]
-            l += 1
-            r -= 1
+        
+        low, high = k+1, len(nums) - 1
+        while low < high:
+            nums[low], nums[high] = nums[high], nums[low]
+            low += 1
+            high -= 1

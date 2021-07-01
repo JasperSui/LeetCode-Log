@@ -5,18 +5,15 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        if not head: return
         a = b = head
         i = 0
         while b and i < k:
             b = b.next
             i += 1
-        
         if i < k: return head
         
         new_head = self.reverse(a, b)
         a.next = self.reverseKGroup(b, k)
-        
         return new_head
     
     def reverse(self, a, b):

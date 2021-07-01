@@ -7,12 +7,11 @@ class Solution:
             mid = low + (high - low) // 2
             if nums[mid] == target:
                 start = end = mid
-                while start > 0 and nums[start-1] == target:
+                while start > 0 and nums[start] == nums[start-1]:
                     start -= 1
-                while end < len(nums) - 1 and nums[end+1] == target:
+                while end < len(nums)-1 and nums[end] == nums[end+1]:
                     end += 1
                 return [start, end]
             elif nums[mid] > target: high = mid - 1
             elif nums[mid] < target: low = mid + 1
         return [-1, -1]
-        

@@ -6,13 +6,14 @@
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         curr = head = ListNode()
-        queue = []
+        pq = []
         for l in lists:
             if l:
-                heapq.heappush(queue, (l.val, id(l), l))
-        while queue:
-            _, _, curr.next = heapq.heappop(queue)
+                heapq.heappush(pq, (l.val, id(l), l))
+        
+        while pq:
+            _, _, curr.next = heapq.heappop(pq)
             curr = curr.next
             if curr.next:
-                heapq.heappush(queue, (curr.next.val, id(curr.next), curr.next))
+                heapq.heappush(pq, (curr.next.val, id(curr.next), curr.next))
         return head.next

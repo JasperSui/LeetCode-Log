@@ -9,16 +9,18 @@ class Solution:
         a = b = head
         i = 0
         while b and i < k:
-            i += 1
             b = b.next
+            i += 1
+        
         if i < k: return head
+        
         new_head = self.reverse(a, b)
         a.next = self.reverseKGroup(b, k)
-        return new_head
         
+        return new_head
+    
     def reverse(self, a, b):
-        curr = a
-        prev = None
+        curr, prev = a, None
         while curr != b:
             curr.next, prev, curr = prev, curr, curr.next
         return prev

@@ -3,7 +3,7 @@ class Solution:
         l, r = 0, len(height)-1
         ans = 0
         l_max, r_max = 0, 0
-        while l <= r:
+        while l < r:
             l_max = max(l_max, height[l])
             r_max = max(r_max, height[r])
             if l_max < r_max:

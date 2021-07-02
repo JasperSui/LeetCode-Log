@@ -15,14 +15,13 @@ class Solution:
             col_end -= 1
             
             if row_start <= row_end:
-                
                 for i in range(col_end, col_start-1, -1):
                     res.append(matrix[row_end][i])
             row_end -= 1
             
             if col_start <= col_end:
-                
                 for i in range(row_end, row_start-1, -1):
                     res.append(matrix[i][col_start])
             col_start += 1
+        
         return res

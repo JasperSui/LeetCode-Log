@@ -1,12 +1,12 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        out = []
-        for start, end in sorted(intervals, key=lambda x: x[0]):
-            if out and out[-1][1] >= start:
-                out[-1][1] = max(out[-1][1], end)
+        stack = []
+        for s, e in sorted(intervals, key=lambda x: x[0]):
+            if stack and stack[-1][1] >= s:
+                stack[-1][1] = max(stack[-1][1], e)
             else:
-                out += [[start, end]]
-        return out
+                stack.append([s, e])
+        return stack
         
         
         

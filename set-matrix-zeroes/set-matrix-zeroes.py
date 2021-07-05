@@ -3,20 +3,90 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        col0, m, n = 1, len(matrix), len(matrix[0])
-        
+        is_zero_col, is_zero_row = False, False
+        m, n = len(matrix), len(matrix[0])
         for i in range(m):
-            if matrix[i][0] == 0: col0 = 0
+            if matrix[i][0] == 0:
+                is_zero_col = True
+                break
+        
+        for i in range(n):
+            if matrix[0][i] == 0:
+                is_zero_row = True
+                break
+            
+        for i in range(1, m):
             for j in range(1, n):
                 if matrix[i][j] == 0:
-                    matrix[i][0] = matrix[0][j] = 0
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
         
-        for i in range(m-1, -1, -1):
+        for i in range(1, m):
             for j in range(1, n):
                 if matrix[i][0] == 0 or matrix[0][j] == 0:
                     matrix[i][j] = 0
-            if col0 == 0:
+        
+        if is_zero_col:
+            for i in range(m):
                 matrix[i][0] = 0
+        
+        if is_zero_row:
+            for i in range(n):
+                matrix[0][i] = 0
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         col0, m, n = 1, len(matrix), len(matrix[0])
+        
+#         for i in range(m):
+#             if matrix[i][0] == 0: col0 = 0
+#             for j in range(1, n):
+#                 if matrix[i][j] == 0:
+#                     matrix[i][0] = matrix[0][j] = 0
+#         print(matrix)
+#         for i in range(m-1, -1, -1):
+#             for j in range(1, n):
+#                 if matrix[i][0] == 0 or matrix[0][j] == 0:
+#                     matrix[i][j] = 0
+#             if col0 == 0:
+#                 matrix[i][0] = 0
         
         
         # m, n = len(matrix), len(matrix[0])

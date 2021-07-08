@@ -10,17 +10,13 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        self.res = defaultdict(list)
-        def traverse(node, level=0):
-            if not node: return
-            traverse(node.left, level+1)
-            self.res[level].append(node)
-            traverse(node.right, level+1)
-        traverse(root)
-        for level_list in self.res.values():
-            for i in range(len(level_list)):
-                if i == len(level_list) - 1:
-                    level_list[i].next = None
-                else:
-                    level_list[i].next = level_list[i+1]
-        return root
+        # should show the O(n) space and show the O(1) space
+        dummy = root
+        while root and root.left:
+            next_start = root.left
+            while root:
+                root.left.next = root.right
+                root.right.next = root.next and root.next.left
+                root = root.next
+            root = next_start
+        return dummy

@@ -10,6 +10,32 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
+        curr = root
+        p = dummy = Node()
+        while curr:
+            if curr.left:
+                p.next = curr.left
+                p = p.next
+            if curr.right:
+                p.next = curr.right
+                p = p.next
+            if curr.next:
+                curr = curr.next
+            else:
+                curr = dummy.next
+                dummy.next = None
+                p = dummy
+        return root
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 #         self.d = defaultdict(list)
 #         def dfs(node, level=0):
 #             if not node: return

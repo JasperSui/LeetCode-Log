@@ -11,7 +11,7 @@ class Solution:
             if not node: return 0
             l = max(dfs(node.left), 0)
             r = max(dfs(node.right), 0)
-            s = l + r + node.val
+            s = node.val + l + r
             self.ans = max(self.ans, s)
             return node.val + max(l, r)
         dfs(root)

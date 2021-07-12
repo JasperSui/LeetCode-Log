@@ -15,16 +15,16 @@ class Solution:
         return self.merge(left, right)
     
     def get_mid(self, head):
-        fast = slow = head
+        slow = fast = head
         while fast.next and fast.next.next:
-            fast = fast.next.next
             slow = slow.next
+            fast = fast.next.next
         mid = slow.next
         slow.next = None
         return mid
     
     def merge(self, left, right):
-        dummy = tail = ListNode(None)
+        dummy = tail = ListNode()
         while left and right:
             if left.val < right.val:
                 tail.next, tail, left = left, left, left.next

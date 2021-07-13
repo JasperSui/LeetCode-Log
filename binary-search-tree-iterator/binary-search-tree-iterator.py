@@ -7,20 +7,20 @@
 class BSTIterator:
 
     def __init__(self, root: TreeNode):
-        self.d = deque()
-        
+        self.data = deque()
         def dfs(node):
             if not node: return
             dfs(node.left)
-            self.d.append(node)
+            self.data.append(node.val)
             dfs(node.right)
         dfs(root)
 
     def next(self) -> int:
-        return self.d.popleft().val
-
+        return self.data.popleft()
+        
     def hasNext(self) -> bool:
-        return len(self.d) > 0
+        return len(self.data) > 0
+        
 
 
 # Your BSTIterator object will be instantiated and called as such:

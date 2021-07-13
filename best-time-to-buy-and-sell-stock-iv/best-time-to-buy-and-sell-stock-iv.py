@@ -19,14 +19,14 @@ class Solution:
 
         n = len(prices)
         if n == 1 or k == 0 or not prices: return 0
-        if k > n//2:
+        if k >= n/2:
             profit = 0
             for i in range(1, len(prices)):
                 if prices[i] > prices[i-1]:
                     profit += prices[i] - prices[i-1]
             return profit
-        buy = [float('-inf')] * (n+1)
-        sell = [0] * (n+1)
+        buy = [float('-inf')] * n
+        sell = [0] * n
         for p in prices:
             for i in range(1, k+1):
                 buy[i] = max(buy[i], sell[i-1] - p)

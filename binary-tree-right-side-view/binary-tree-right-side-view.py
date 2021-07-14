@@ -6,7 +6,6 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: TreeNode) -> List[int]:
-        if not root: return []
         self.d = defaultdict(list)
         def dfs(node, level=0):
             if not node: return
@@ -14,5 +13,4 @@ class Solution:
             dfs(node.left, level+1)
             dfs(node.right, level+1)
         dfs(root)
-        ans = [l[-1] for l in self.d.values()]
-        return ans
+        return [l[-1] for l in self.d.values()]

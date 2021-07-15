@@ -1,6 +1,52 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         # Solution 1
+        ans = 0 ^ len(nums)
+        for i, n in enumerate(nums):
+            ans ^= i ^ n
+        return ans
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # return sum(range(len(nums)+1)) - sum(nums)
     
         # Solution 2

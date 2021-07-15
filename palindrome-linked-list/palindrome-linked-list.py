@@ -10,14 +10,12 @@ class Solution:
             fast = fast.next.next
             slow = slow.next
         
-        node = None
-        while slow:
-            next, slow.next = slow.next, node
-            node, slow = slow, next
-
-        while node:
-            if node.val != head.val:
-                return False
-            node = node.next
+        curr, prev = slow, None
+        while curr:
+            curr.next, prev, curr = prev, curr, curr.next
+        
+        while prev:
+            if prev.val != head.val: return False
+            prev = prev.next
             head = head.next
         return True

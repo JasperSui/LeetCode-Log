@@ -1,22 +1,22 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0: return 0
-        stack1 = {0}
-        stack2 = set()
-        visited = [False]*(amount+1)
-        visited[0] = [True]
+        stack = {0}
+        visited = [False] * (amount + 1)
+        visited[0] = True
         ans = 0
-        while stack1:
+        
+        while stack:
+            new_stack = set()
             ans += 1
-            for x in stack1:
-                for y in coins:
-                    new = x + y
-                    if new == amount:
-                        return ans
-                    elif new >= amount:
-                        continue
-                    elif not visited[new]:
-                        visited[new] = True
-                        stack2.add(new)
-            stack1, stack2 = stack2, set()
+            for i in stack:
+                for j in coins:
+                    new_amount = i + j
+                    if i + j == amount: return ans
+                    elif i + j > amount: continue
+                    elif not visited[new_amount]:
+                        visited[new_amount] = True
+                        new_stack.add(new_amount)
+            stack = new_stack
         return -1
+        

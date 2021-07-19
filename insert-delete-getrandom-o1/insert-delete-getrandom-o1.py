@@ -16,7 +16,6 @@ class RandomizedSet:
             self.pos[val] = len(self.nums) - 1
             return True
         return False
-        
 
     def remove(self, val: int) -> bool:
         """
@@ -24,9 +23,10 @@ class RandomizedSet:
         """
         if val in self.pos:
             index, last = self.pos[val], self.nums[-1]
-            self.nums[index], self.pos[last] = last, index
+            self.nums[index] = last
+            self.pos[last] = index
             self.nums.pop()
-            self.pos.pop(val, 0)
+            self.pos.pop(val)
             return True
         return False
         
@@ -35,7 +35,8 @@ class RandomizedSet:
         """
         Get a random element from the set.
         """
-        return self.nums[random.randint(0, len(self.nums)-1)]
+        return random.choice(self.nums)
+        
 
 
 # Your RandomizedSet object will be instantiated and called as such:

@@ -6,5 +6,4 @@ class Solution:
         while n > 4:
             ans *= 3
             n -= 3
-        ans *= n
-        return ans
+        return ans * n

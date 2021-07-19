@@ -26,6 +26,7 @@ class NestedIterator:
     
     def next(self) -> int:
         return self.stack.pop().getInteger()
+        
     
     def hasNext(self) -> bool:
         while self.stack:

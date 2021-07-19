@@ -4,41 +4,38 @@ class RandomizedSet:
         """
         Initialize your data structure here.
         """
-        self.item_list = []
-        self.item_index = {}
+        self.nums = []
+        self.pos = {}
 
     def insert(self, val: int) -> bool:
         """
         Inserts a value to the set. Returns true if the set did not already contain the specified element.
         """
-        if val in self.item_index: return False
-        else:
-            self.item_list.append(val)
-            self.item_index[val] = len(self.item_list) - 1
+        if val not in self.pos:
+            self.nums.append(val)
+            self.pos[val] = len(self.nums) - 1
             return True
+        return False
         
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
-        if val in self.item_index:
-            index = self.item_index[val]
-            last = self.item_list[-1]
-            self.item_list[index] = last
-            self.item_index[last] = index
-            self.item_list.pop()
-            del self.item_index[val]
+        if val in self.pos:
+            index, last = self.pos[val], self.nums[-1]
+            self.nums[index], self.pos[last] = last, index
+            self.nums.pop()
+            self.pos.pop(val, 0)
             return True
-        else:
-            return False
+        return False
+        
 
     def getRandom(self) -> int:
         """
         Get a random element from the set.
         """
-        return random.choice(self.item_list)
-        
+        return self.nums[random.randint(0, len(self.nums)-1)]
 
 
 # Your RandomizedSet object will be instantiated and called as such:

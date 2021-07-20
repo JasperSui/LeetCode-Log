@@ -8,68 +8,18 @@ class Node:
 
 class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
-        # Time: O(N)
-        # Space: O(height)
-        
-        # self.d = defaultdict(list)
-        # def bfs(node, level=0):
-        #     if not node: return
-        #     self.d[level].append(node.val)
-        #     for c in node.children:
-        #         bfs(c, level+1)
-        # bfs(root)
-        # return list(self.d.values())
         if not root: return []
-        res = []
         stack = [root]
+        res = []
         while stack:
+            new_stack = []
             temp = []
-            next_stack = []
-            while stack:
-                curr = stack.pop()
-                temp.append(curr.val)
-                for c in curr.children:
-                    next_stack = [c] + next_stack
+            for node in stack:
+                temp.append(node.val)
+                
+                for child in node.children:
+                    new_stack.append(child)
             res.append(temp)
-            stack = next_stack
+            stack = new_stack
         return res
         
-        # # Recursive 1
-        # res = defaultdict(list)
-        # def bfs(node, level=0):
-        #     if node:
-        #         res[level].append(node.val)
-        #         for c in node.children:
-        #             bfs(c, level+1)
-        # bfs(root)
-        # return list(res.values())
-        
-        # # Iterative 1
-        # res = defaultdict(list)
-        # queue = [(root, 0)]
-        # while queue:
-        #     node, level = queue.pop(0)
-        #     if node:
-        #         res[level].append(node.val)
-        #         for c in node.children:
-        #             queue.append([c, level+1])
-        # return list(res.values())
-    
-        # Iterative 2
-        # if not root: return []
-        # res = []
-        # queue = [root]
-        # while queue:
-        #     tmp = []
-        #     next_queue = []
-        #     for node in queue:
-        #         tmp.append(node.val)
-        #         for c in node.children:
-        #             next_queue.append(c)
-        #     res.append(tmp)
-        #     queue = next_queue
-        # return res
-                
-        
-        
-            

@@ -5,46 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-
-    def dfs(self, node, s, d):
-        if not node: return
-        s += node.val
-        old = s - self.t
-        self.ans += d.get(old, 0)
-        d[s] = d.get(s, 0) + 1
-        self.dfs(node.left, s, d)
-        self.dfs(node.right, s, d)
-        d[s] -= 1
-        
+    def pathSum(self, root: TreeNode, targetSum: int) -> int:
+        self.res = 0
+        d = defaultdict(int)
+        d[0] = 1
+        self.dfs(root, targetSum, 0, d)
+        return self.res
     
-    def pathSum(self, root: TreeNode, sum: int) -> int:
-        self.ans = 0
-        self.t = sum
-        d = {0: 1}
-        self.dfs(root, 0, d)
-        return self.ans
+    def dfs(self, node, target, curr, d):
+        if not node: return
+        curr += node.val
+        old = curr - target
         
+        self.res += d[old]
+        d[curr] += 1
         
+        self.dfs(node.left, target, curr, d)
+        self.dfs(node.right, target, curr, d)
         
-#         if not node: return
-#         s += node.val
-#         old = s - self.t
-#         print(d, s, self.t)
-#         self.ans += d.get(old, 0)
-#         d[s] = d.get(s, 0) + 1
-        
-#         self.dfs(node.left, s, d)
-#         self.dfs(node.right, s, d)
-#         d[s] -= 1
-        
-#     def pathSum(self, root: TreeNode, sum: int) -> int:
-#         # Time: O(n)
-#         # Space: O(h)
-        
-#         # dfs
-#         self.ans = 0
-#         self.t = sum
-#         d = {0: 1}
-        
-#         self.dfs(root, 0, d)
-#         return self.ans
+        d[curr] -= 1

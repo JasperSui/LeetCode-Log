@@ -5,18 +5,18 @@ class Solution:
             lower = max(lower, n)
             upper += n
         
-        if k == len(nums): return lower
+        if len(nums) == k: return lower
         
-        low, high = lower, upper + 1
+        low, high = lower, upper
         while low < high:
             mid = low + (high - low) // 2
-            if self.cut_func(nums, mid) > k:
+            if self.cut(nums, mid) > k:
                 low = mid + 1
             else:
-                high = mid 
+                high = mid
         return low
     
-    def cut_func(self, nums, mid):
+    def cut(self, nums, mid):
         total, k = 0, 1
         for n in nums:
             total += n

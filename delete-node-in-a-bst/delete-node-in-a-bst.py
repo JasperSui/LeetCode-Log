@@ -17,34 +17,10 @@ class Solution:
             if not root.right:
                 return root.left
             temp = root.right
-            min_v = temp.val
+            min_val = temp.val
             while temp and temp.left:
                 temp = temp.left
-                min_v = temp.val
-            root.val = min_v
+                min_val = temp.val
+            root.val = min_val
             root.right = self.deleteNode(root.right, root.val)
         return root
-        
-        
-        
-        
-        
-        # if not root: return
-        # if root.val > key: 
-        #     root.left = self.deleteNode(root.left, key)
-        # elif root.val < key:
-        #     root.right = self.deleteNode(root.right, key)
-        # else: # root.val == key
-        #     if not root.left:
-        #         return root.right
-        #     if not root.right:
-        #         return root.left
-        #     # left and right are both not null
-        #     temp = root.right
-        #     min_v = temp.val
-        #     while temp and temp.left: 
-        #         temp = temp.left
-        #         min_v = temp.val
-        #     root.val = min_v
-        #     root.right = self.deleteNode(root.right, root.val)
-        # return root

@@ -3,8 +3,8 @@ class Solution:
         ans = 0
         prev = float('-inf')
         points.sort(key=lambda x: x[1])
-        for start, end in points:
-            if prev >= start: continue
+        for s, e in points:
+            if prev >= s: continue
+            prev = e
             ans += 1
-            prev = end
         return ans

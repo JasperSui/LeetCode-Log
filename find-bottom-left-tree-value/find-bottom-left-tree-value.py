@@ -6,14 +6,13 @@
 #         self.right = right
 class Solution:
     def findBottomLeftValue(self, root: TreeNode) -> int:
-        self.bottom_left_value = float('inf')
-        self.max_level = 0
-        def dfs(node, level=1):
+        self.d = defaultdict(list)
+        self.max_depth = float('-inf')
+        def dfs(node, depth=1):
             if not node: return
-            dfs(node.left, level+1)
-            dfs(node.right, level+1)
-            if level > self.max_level:
-                self.max_level = level
-                self.bottom_left_value = node.val
+            self.d[depth].append(node.val)
+            self.max_depth = max(self.max_depth, depth)
+            dfs(node.left, depth+1)
+            dfs(node.right, depth+1)
         dfs(root)
-        return self.bottom_left_value if self.bottom_left_value != float('inf') else root.val
+        return self.d[self.max_depth][0]

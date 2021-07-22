@@ -13,4 +13,4 @@ class Solution:
             self.res.append(node.val)
             dfs(node.right)
         dfs(root)
-        return min(self.res[i+1] - self.res[i] for i in range(len(self.res)-1))
+        return min(self.res[i] - self.res[i-1] for i in range(1, len(self.res)))

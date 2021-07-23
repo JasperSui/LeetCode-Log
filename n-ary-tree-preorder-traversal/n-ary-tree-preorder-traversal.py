@@ -12,39 +12,7 @@ class Solution:
         def dfs(node):
             if not node: return
             self.res.append(node.val)
-            for c in node.children:
-                dfs(c)
+            for child in node.children:
+                dfs(child)
         dfs(root)
         return self.res
-        
-        
-        
-        
-        
-        
-        
-        
-        # Time: O(N)
-        # Space: O(height)
-        
-        # # Iterable
-        # res = []
-        # if not root: return res
-        # stack = [root]
-        # while stack:
-        #     curr = stack.pop()
-        #     res.append(curr.val)
-        #     stack.extend(curr.children[::-1] if curr.children else [])
-        # return res
-        
-        # # Recrusive
-        
-        res = []
-        def dfs(node):
-            if not node: return
-            res.append(node.val)
-            if node.children:
-                for c in node.children:
-                    dfs(c)
-        dfs(root)
-        return res

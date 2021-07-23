@@ -7,11 +7,11 @@
 class Solution:
     def convertBST(self, root: TreeNode) -> TreeNode:
         self.val = 0
-        def visit(node):
+        def dfs(node):
             if not node: return
-            visit(node.right)
-            node.val += self.val
-            self.val = node.val
-            visit(node.left)
-        visit(root)
+            dfs(node.right)
+            self.val += node.val
+            node.val = self.val
+            dfs(node.left)
+        dfs(root)
         return root

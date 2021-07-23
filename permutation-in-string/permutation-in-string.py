@@ -1,11 +1,13 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         need, window = defaultdict(int), defaultdict(int)
-        for c in s1: need[c] += 1
+        for c in s1:
+            need[c] += 1
         left, right, valid = 0, 0, 0
         while right < len(s2):
             c = s2[right]
             right += 1
+            
             if c in need:
                 window[c] += 1
                 if window[c] == need[c]:
@@ -20,3 +22,4 @@ class Solution:
                         valid -= 1
                     window[d] -= 1
         return False
+                

@@ -1,16 +1,17 @@
 class Solution:
-    def smallestRange(self, A: List[List[int]]) -> List[int]:
-        pq = [(row[0], i, 0) for i, row in enumerate(A)]
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+        pq = [(row[0], i, 0) for i, row in enumerate(nums)]
+        ans = -1e5, 1e5
         heapq.heapify(pq)
         
-        ans = -1e5, 1e5
-        right = max(row[0] for row in A)
+        right = max(row[0] for row in nums)
         while pq:
             left, i, j = heapq.heappop(pq)
             if right - left < ans[1] - ans[0]:
                 ans = left, right
-            if j + 1 == len(A[i]):
+            if j + 1 == len(nums[i]):
                 return ans
-            v = A[i][j+1]
+            v = nums[i][j+1]
             right = max(right, v)
             heapq.heappush(pq, (v, i, j+1))
+        

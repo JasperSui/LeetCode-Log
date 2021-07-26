@@ -6,22 +6,19 @@
 #         self.right = right
 class Solution:
     def addOneRow(self, root: TreeNode, val: int, depth: int) -> TreeNode:
-        self.d = defaultdict(list)
-        def dfs(node, level=1):
+        def dfs(node, height=1):
             if not node: return
-            dfs(node.left, level+1)
-            self.d[level].append(node)
-            dfs(node.right, level+1)
-        dfs(root)
-        
+            if depth == 1:
+                t = TreeNode(val)
+                t.left = node
+                return t
+            if height == depth-1:
+                temp_left, temp_right = node.left, node.right
+                node.left, node.right = TreeNode(val), TreeNode(val)
+                node.left.left, node.right.right = temp_left, temp_right
+            dfs(node.left, height+1)
+            dfs(node.right, height+1)
+        depth_1_ans = dfs(root)
         if depth == 1:
-            node = TreeNode(val)
-            node.left = root
-            return node
-        else:
-            original_nodes = self.d[depth-1]
-            for n in original_nodes:
-                temp_left, temp_right = n.left, n.right
-                n.left, n.right = TreeNode(val), TreeNode(val)
-                n.left.left, n.right.right= temp_left, temp_right
-            return root
+            return depth_1_ans
+        return root

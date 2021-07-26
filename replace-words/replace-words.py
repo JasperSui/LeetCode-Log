@@ -1,16 +1,36 @@
+class TrieNode:
+    def __init__(self):
+        self.links = defaultdict(TrieNode)
+        self.is_word = False
+        self.word = ""
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        node = self.root
+        for c in word:
+            node = node.links[c]
+        node.is_word = True
+        node.word = word
+    
+    def find(self, word):
+        node = self.root
+        for c in word:
+            if c not in node.links.keys(): return word
+            node = node.links[c]
+            if node.is_word:
+                return node.word
+
 class Solution:
     def replaceWords(self, dictionary: List[str], sentence: str) -> str:
-        dictionary = set(dictionary)
-        ans = []
-        sentences = sentence.split()
-        for s in sentences:
-            added = False
-            for i in range(len(s)):
-                if s[:i] in dictionary:
-                    ans.append(s[:i])
-                    added = True
-                    break
-            
-            if not added:
-                ans.append(s)
-        return " ".join(ans)
+        t = Trie()
+        res = []
+        for word in dictionary:
+            t.insert(word)
+        for word in sentence.split(' '):
+            new_word = t.find(word)
+            if not new_word: new_word = word
+            res.append(new_word)
+        return " ".join(res)

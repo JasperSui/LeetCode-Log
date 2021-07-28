@@ -1,8 +1,8 @@
 class TrieNode:
     def __init__(self):
-        self.word = ""
-        self.is_word = False
         self.links = defaultdict(TrieNode)
+        self.is_word = False
+        self.word = ""
 
 class Trie:
     def __init__(self):

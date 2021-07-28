@@ -1,3 +1,3 @@
 class Solution:
-    def toLowerCase(self, str: str) -> str:
-        return str.lower()
+    def toLowerCase(self, s: str) -> str:
+        return s.lower()

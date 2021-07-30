@@ -1,29 +1,4 @@
 class Solution:
-    def peakIndexInMountainArray(self, A: List[int]) -> int:
-        low, high = 0, len(A)-1
-        while low < high:
-            mid = low + (high - low) // 2
-            if A[mid] < A[mid+1]: low = mid + 1
-            else: high = mid
-        return low
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # low, high = 0, len(A)-1
-        # while low < high:
-        #     mid = (low+high) // 2
-        #     if A[mid] < A[mid+1]: low = mid + 1
-        #     else: high = mid
-        # return low
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        for i in range(len(arr)-1):
+            if arr[i+1] < arr[i]: return i

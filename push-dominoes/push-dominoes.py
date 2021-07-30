@@ -1,6 +1,6 @@
 class Solution:
-    def pushDominoes(self, d: str) -> str:
-        d = "L" + d + "R"
+    def pushDominoes(self, dominoes: str) -> str:
+        d = "L" + dominoes + "R"
         res = ""
         i = 0
         for j in range(1, len(d)):
@@ -8,16 +8,17 @@ class Solution:
                 continue
             if i:
                 res += d[i]
-                
-            mid = j - i - 1
+            
+            space = j - i - 1
             if d[i] == d[j]:
-                res += d[i] * mid
+                res += d[i] * space
             
             elif d[j] == "R" and d[i] == "L":
-                res += "." * mid
+                res += "." * space
             
             else:
-                res += "R" * (mid // 2) + "." * (mid % 2) + "L" * (mid // 2)
+                res += "R" * (space // 2) + "." * (space % 2) + "L" * (space // 2)
             i = j
         return res
+                
             

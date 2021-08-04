@@ -3,30 +3,32 @@ class Solution:
         n = len(s)
         parent = list(range(n))
         memo = defaultdict(list)
+        res = []
         
         def union(x, y):
-            x = find(x)
-            y = find(y)
-            if x == y: return
-            parent[y] = x
+            parent[find(y)] = find(x)
         
         def find(x):
             if parent[x] != x:
                 parent[x] = find(parent[x])
             return parent[x]
         
-        res = []
-        
+        # make x == y's parent
         for x, y in pairs:
             union(x, y)
-        
+         
+        # find parent of i and append current char into the list
         for i in range(n):
             memo[find(i)].append(s[i])
         
-        for index in memo.keys():
-            memo[index].sort(reverse=True)
+        # Iterate all parent's list and sort them
+        for key in memo.keys():
+            memo[key].sort(reverse=True)
         
+        # Append the smallest char of i's list
         for i in range(n):
             res.append(memo[find(i)].pop())
-
+        
         return "".join(res)
+        
+            

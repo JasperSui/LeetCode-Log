@@ -1,10 +1,14 @@
 class Solution:
     def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
-        res = []
         d = defaultdict(list)
-        for i, v in enumerate(groupSizes):
-            d[v].append(i)
-            if len(d[v]) == v:
-                res.append(d[v])
-                d[v] = []
+        res = []
+        for i, g in enumerate(groupSizes):
+            d[g].append(i)
+        for g, people in d.items():
+            while people:
+                temp = []
+                while len(temp) != g:
+                    temp.append(people.pop())
+                res.append(temp)
         return res
+            

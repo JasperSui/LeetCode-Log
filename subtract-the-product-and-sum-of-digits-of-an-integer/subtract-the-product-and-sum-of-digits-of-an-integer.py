@@ -1,8 +1,8 @@
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
-        p = 1
-        s = 0
-        for i in map(int, list(str(n))):
-            p *= i
-            s += i
-        return p - s
+        p, s = 1, 0
+        for c in str(n):
+            c = int(c)
+            p *= c
+            s += c
+        return p-s

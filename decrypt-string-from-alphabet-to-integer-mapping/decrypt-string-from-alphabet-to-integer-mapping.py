@@ -1,12 +1,12 @@
 class Solution:
     def freqAlphabets(self, s: str) -> str:
-        res = []
-        s = deque(list(s))
-        while s:
-            if s[0] in ('1', '2') and len(s) >= 3 and s[2] == '#':
-                res.append(f"{chr(96+int(s[0]+s[1]))}")
-                for _ in range(3): s.popleft()
+        res = ""
+        i = 0
+        while i < len(s):
+            if i < len(s) - 2 and s[i+2] == "#":
+                res += chr(ord('a') + int(s[i:i+2]) - 1)
+                i += 3
             else:
-                res.append(f"{chr(96+int(s[0]))}")
-                s.popleft()
-        return "".join(res)
+                res += chr(ord('a') + int(s[i]) - 1)
+                i += 1
+        return res

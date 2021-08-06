@@ -1,11 +1,10 @@
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
-        if len(connections) < n-1: return -1
-
+        if len(connections) < n - 1: return -1
         graph = [set() for _ in range(n)]
-        for a, b in connections:
-            graph[a].add(b)
-            graph[b].add(a)
+        for x, y in connections:
+            graph[x].add(y)
+            graph[y].add(x)
         
         visited = [0] * n
         
@@ -16,7 +15,8 @@ class Solution:
                 dfs(j)
             return 1
         
-        res = -1
+        connected = 0
         for i in range(n):
-            res += dfs(i)
-        return res
+            connected += dfs(i)
+        return connected - 1
+        

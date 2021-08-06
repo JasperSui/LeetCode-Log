@@ -7,10 +7,11 @@
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
         self.ans = 0
-        def dfs(node, f=None, gf=None):
+        def dfs(node, p=None, gp=None):
             if not node: return
-            dfs(node.left, node.val, f)
-            if gf is not None and gf % 2 == 0: self.ans += node.val
-            dfs(node.right, node.val, f)
+            if gp and gp.val % 2 == 0:
+                self.ans += node.val
+            dfs(node.left, node, p)
+            dfs(node.right, node, p)
         dfs(root)
         return self.ans

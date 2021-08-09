@@ -7,23 +7,26 @@
 
 class Solution:
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
-        self.count = 0
-        self.target_count = float('-inf')
-        self.ans = None
-        def dfs(node, is_clone=False):
+        self.target_index = 0
+        self.curr_index = 0
+        def dfs(node):
             if not node: return
-            if node == target or self.count == self.target_count:
-                if is_clone:
-                    self.ans = node
-                else:
-                    self.target_count = self.count
-            if node.left:
-                self.count += 1
-                dfs(node.left, is_clone)
-            if node.right:
-                self.count += 1
-                dfs(node.right, is_clone)
+            self.curr_index += 1
+            if node == target:
+                self.target_index = self.curr_index
+            dfs(node.left)
+            dfs(node.right)
         dfs(original)
-        self.count = 0
-        dfs(cloned, True)
-        return self.ans
+
+        self.curr_index = 0
+        self.res = None
+        def dfs2(node):
+            if not node: return
+            self.curr_index += 1
+            if self.curr_index == self.target_index:
+                self.res = node
+            dfs2(node.left)
+            dfs2(node.right)
+        dfs2(cloned)
+        return self.res
+            

@@ -5,4 +5,4 @@ class Solution:
             count[n+1] += 1
         for i in range(1, 102):
             count[i] += count[i-1]
-        return [count[num] for num in nums]
+        return [count[n] for n in nums]

@@ -8,7 +8,7 @@ class Solution:
     def __init__(self):
         self.ans = 0
     
-    def maxSumBST(self, root: TreeNode) -> int:
+    def maxSumBST(self, root: Optional[TreeNode]) -> int:
         self.is_valid_bst(root)
         return self.ans
     

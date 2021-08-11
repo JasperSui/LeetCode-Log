@@ -1,13 +1,13 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        word1 = deque(list(word1))
-        word2 = deque(list(word2))
+        d1 = deque(word1)
+        d2 = deque(word2)
         res = ""
-        while word1 or word2:
-            if not word2:
-                res += word1.popleft()
-            elif not word1:
-                res += word2.popleft()
+        while d1 or d2:
+            if not d1:
+                res += d2.popleft()
+            elif not d2:
+                res += d1.popleft()
             else:
-                res += word1.popleft() + word2.popleft()
+                res += d1.popleft() + d2.popleft()
         return res

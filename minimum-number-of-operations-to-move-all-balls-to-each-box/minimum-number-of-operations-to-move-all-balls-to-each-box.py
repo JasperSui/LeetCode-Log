@@ -1,7 +1,16 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        res = [0] * len(boxes)
-        indexes = set([i for i, v in enumerate(list(boxes)) if v == "1"])
-        for i in range(len(boxes)):
-            res[i] = sum(abs(i-j) for j in indexes)
+        n = len(boxes)
+        res = [0] * n
+        curr, step = 0, 0
+        for i in range(n):
+            res[i] += step
+            curr += int(boxes[i])
+            step += curr
+        
+        curr, step = 0, 0
+        for i in reversed(range(n)):
+            res[i] += step
+            curr += int(boxes[i])
+            step += curr
         return res

@@ -2,21 +2,24 @@ class Solution:
     def closestCost(self, baseCosts: List[int], toppingCosts: List[int], target: int) -> int:
         baseCosts.sort(reverse=True)
         toppingCosts.sort(reverse=True)
+        
         res = baseCosts[0]
-        res_delta = abs(target - res)
+        
+        res_diff = abs(target - res)
+        
         for bc in baseCosts:
             candidates = set([bc])
             for tc in toppingCosts:
                 new_candidates = set()
                 for c in candidates:
-                    for x in range(3):
-                        nc = c + x*tc
-                        if nc - target < res_delta:
+                    for times in range(3):
+                        nc = c + tc * times
+                        if nc - target < res_diff:
                             new_candidates.add(nc)
-                        delta = abs(nc - target)
-                        if delta < res_delta or (delta == res_delta and nc < res):
+                        elif nc == target: return nc
+                        diff = abs(nc - target)
+                        if diff < res_diff or (diff == res_diff and nc < res):
                             res = nc
-                            res_delta = delta
+                            res_diff = diff
                 candidates = new_candidates
         return res
-                        

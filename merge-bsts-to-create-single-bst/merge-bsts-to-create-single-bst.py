@@ -7,44 +7,50 @@
 class Solution:
     def canMerge(self, trees: List[TreeNode]) -> TreeNode:
         nodes = {}
-        indeg = defaultdict(int)
+        indegree = defaultdict(int)
         for t in trees:
-            if t.val not in indeg:
-                indeg[t.val] = 0
+            if t.val not in indegree:
+                indegree[t.val] = 0
             if t.left:
-                indeg[t.left.val] += 1
-                if t.left.val not in nodes: nodes[t.left.val] = t.left
+                indegree[t.left.val] += 1
+                if t.left.val not in nodes:
+                    nodes[t.left.val] = t.left
             if t.right:
-                indeg[t.right.val] += 1
-                if t.right.val not in nodes: nodes[t.right.val] = t.right
+                indegree[t.right.val] += 1
+                if t.right.val not in nodes:
+                    nodes[t.right.val] = t.right
             nodes[t.val] = t
-        source = [k for k, v in indeg.items() if v == 0]
-        if len(source) != 1: return
+        
+        source = [k for k, v in indegree.items() if v == 0]
+        if len(source) != 1:
+            return
         
         visited = set()
-        self.prev = float('-inf')
-        self.is_valid = True
-        
+        self.curr = float('-inf')
+        self.is_not_valid = False
         def inorder(val):
             if val in visited:
-                self.is_valid = False
+                self.is_not_valid = True
                 return
+
             visited.add(val)
             node = nodes[val]
             if node.left:
                 node.left = inorder(node.left.val)
-            if self.prev >= val:
-                self.is_valid = False
+            
+            if val <= self.curr:
+                self.is_not_valid = True
                 return
-            self.prev = val
+            
+            self.curr = val
             if node.right:
                 node.right = inorder(node.right.val)
+            
             return node
-        root = inorder(source[0])
-        if len(visited) != len(nodes) or not self.is_valid:
-            return
-        return root
         
+        root = inorder(source[0])
+        if len(visited) != len(nodes) or self.is_not_valid: return
+        return root
         
 #         if len(trees) == 1:
 #             if self.is_valid(trees[0]):

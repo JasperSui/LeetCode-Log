@@ -13,11 +13,12 @@ class Solution:
         for j in range(m):
             if used[j]:
                 continue
+            
             used[j] = 1
-            s = 0
+            curr_sum = 0
             for k in range(n):
                 if students[i][k] == mentors[j][k]:
-                    s += 1
-            self.dfs(students, mentors, i+1, score+s, m, n, used)
+                    curr_sum += 1
+            self.dfs(students, mentors, i+1, score+curr_sum, m, n, used)
+            
             used[j] = 0
-        

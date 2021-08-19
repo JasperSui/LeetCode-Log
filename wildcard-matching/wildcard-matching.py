@@ -10,11 +10,12 @@ class Solution:
                 star_index = p_index
                 p_index += 1
             elif star_index != -1:
-                p_index = star_index + 1
+                p_index = star_index+1
                 match_index += 1
                 s_index = match_index
             else:
                 return False
+        
         while p_index < len(p) and p[p_index] == "*":
             p_index += 1
         
@@ -22,4 +23,3 @@ class Solution:
             return True
         else:
             return False
-                

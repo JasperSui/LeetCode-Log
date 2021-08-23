@@ -10,7 +10,7 @@ class Solution:
         pre = dummy
         curr = head
         while curr:
-            while curr.next and curr.val == curr.next.val:
+            while curr.next and curr.next.val == curr.val:
                 curr = curr.next
             if pre.next == curr:
                 pre = curr
@@ -18,3 +18,4 @@ class Solution:
                 pre.next = curr.next
             curr = curr.next
         return dummy.next
+    

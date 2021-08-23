@@ -1,47 +1,15 @@
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
         """
-        Do not return anything, modify nums in-place instead.
-        """
+        Do not return anything, modify nums in-place"""
         red, white, blue = 0, 0, len(nums)-1
         while white <= blue:
             if nums[white] == 0:
-                nums[red], nums[white] = nums[white], nums[red]
+                nums[white], nums[red] = nums[red], nums[white]
                 red += 1
                 white += 1
             elif nums[white] == 1:
                 white += 1
-            elif nums[white] == 2:
-                nums[blue], nums[white] = nums[white], nums[blue]
+            else:
+                nums[white], nums[blue] = nums[blue], nums[white]
                 blue -= 1
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # # Dutch national flags problem
-        # red, white, blue = 0, 0, len(nums)-1
-        # while white <= blue:
-        #     if nums[white] == 0: # red
-        #         nums[red], nums[white] = nums[white], nums[red]
-        #         white += 1
-        #         red += 1
-        #     elif nums[white] == 1: # white
-        #         white += 1
-        #     elif nums[white] == 2: # blue
-        #         nums[white], nums[blue] = nums[blue], nums[white]
-        #         blue -= 1

@@ -5,19 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         self.res = defaultdict(list)
-        def dfs(node, level=0):
+        def dfs(node, depth=0):
             if not node: return
-            self.res[level].append(node.val)
-            dfs(node.left, level+1)
-            dfs(node.right, level+1)
+            self.res[depth].append(node.val)
+            dfs(node.left, depth+1)
+            dfs(node.right, depth+1)
         dfs(root)
+        
         res = []
-        for i in range(len(self.res)):
-            temp = self.res[i]
+        for i, l in enumerate(list(self.res.values())):
             if i % 2 == 1:
-                temp.reverse()
-            res.append(temp)
+                res.append(reversed(l))
+            else:
+                res.append(l)
+
         return res
-            

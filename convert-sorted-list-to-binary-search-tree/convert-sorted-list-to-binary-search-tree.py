@@ -10,8 +10,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def sortedListToBST(self, head: ListNode) -> TreeNode:
-        if not head: return
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        if not head: return 
         if not head.next: return TreeNode(head.val)
         slow, fast = head, head.next.next
         while fast and fast.next:

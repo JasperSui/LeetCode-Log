@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         def is_mirror(p, q):
             if not p or not q: return p == q
             if p.val != q.val: return False

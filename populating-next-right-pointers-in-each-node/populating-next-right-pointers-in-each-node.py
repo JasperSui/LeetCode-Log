@@ -10,13 +10,20 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        # should show the O(n) space and show the O(1) space
-        dummy = root
-        while root and root.left:
-            next_start = root.left
-            while root:
-                root.left.next = root.right
-                root.right.next = root.next and root.next.left
-                root = root.next
-            root = next_start
-        return dummy
+        if not root: return root
+        queue = [root]
+        while queue:
+            new_queue = []
+            queue.append(None)
+            for i in range(len(queue)-1):
+                queue[i].next = queue[i+1]
+            queue.pop()
+            
+            for node in queue:
+                if node:
+                    if node.left:
+                        new_queue.append(node.left)
+                    if node.right:
+                        new_queue.append(node.right)
+            queue = new_queue
+        return root

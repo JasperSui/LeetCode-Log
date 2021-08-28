@@ -8,14 +8,12 @@ class Solution:
         
         res = []
         for word in wordDict:
-            if not s.startswith(word):
-                continue
+            if not s.startswith(word): continue
             if len(word) == len(s):
                 res.append(word)
             else:
                 rest_list = self.helper(s[len(word):], wordDict, memo)
                 for item in rest_list:
-                    item = f"{word} {item}"
-                    res.append(item)
+                    res.append(f"{word} {item}")
         memo[s] = res
         return res

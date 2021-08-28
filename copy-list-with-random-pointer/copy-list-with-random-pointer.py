@@ -15,7 +15,7 @@ class Solution:
             copy = Node(node.val)
             copy.next = node.next
             node.next = copy
-            node = copy.next
+            node = node.next.next
         
         node = head
         while node:
@@ -26,8 +26,6 @@ class Solution:
         copy_head = head.next
         copy = copy_head
         while copy.next:
-
             copy.next = copy.next.next
-            copy = copy.next 
-
+            copy = copy.next
         return copy_head

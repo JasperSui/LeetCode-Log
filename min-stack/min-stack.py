@@ -4,23 +4,22 @@ class MinStack:
         """
         initialize your data structure here.
         """
-        self.q = []
+        self.stack = []
 
     def push(self, val: int) -> None:
-        if not self.q:
-            curr_min = val
-        else:
-            curr_min = min(val, self.getMin())
-        self.q.append((val, curr_min))
+        curr_min = self.getMin()
+        curr_min = min(curr_min, val)
+        self.stack.append((val, curr_min))
 
     def pop(self) -> None:
-        self.q.pop()
+        self.stack.pop()
 
     def top(self) -> int:
-        return self.q[-1][0]
+        return self.stack[-1][0]
 
     def getMin(self) -> int:
-        return self.q[-1][1]
+        if not self.stack: return float('inf')
+        return self.stack[-1][1]
 
 
 # Your MinStack object will be instantiated and called as such:

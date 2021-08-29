@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, k, v):
-        self.key = k
-        self.value = v
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
         self.prev = None
         self.next = None
 
@@ -22,28 +22,30 @@ class LRUCache:
             self._append(node)
             return node.value
         return -1
+        
 
     def put(self, key: int, value: int) -> None:
         if key in self.d:
             self._remove(self.d[key])
-        n = Node(key, value)
-        self.d[key] = n
-        self._append(n)
+        node = Node(key, value)
+        self.d[key] = node
+        self._append(node)
         if len(self.d) > self.size:
-            last = self.head.next
-            self._remove(last)
-            del self.d[last.key]
+            n = self.head.next
+            self.head.next = n.next
+            n.next.prev = self.head
+            del self.d[n.key]
+        
     
     def _append(self, node):
-        p = self.tail.prev
-        p.next = node
-        self.tail.prev = node
-        node.prev = p
+        prev = self.tail.prev
+        prev.next = node
+        node.prev = prev
         node.next = self.tail
+        self.tail.prev = node
     
     def _remove(self, node):
-        p = node.prev
-        n = node.next
+        p, n = node.prev, node.next
         p.next = n
         n.prev = p
 

@@ -6,21 +6,23 @@
 #         self.right = right
 class BSTIterator:
 
-    def __init__(self, root: TreeNode):
-        self.data = deque()
-        def dfs(node):
-            if not node: return
-            dfs(node.left)
-            self.data.append(node.val)
-            dfs(node.right)
-        dfs(root)
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
 
     def next(self) -> int:
-        return self.data.popleft()
+        node = self.stack.pop()
+        x = node.right
+        while x:
+            self.stack.append(x)
+            x = x.left
+        return node.val
         
+
     def hasNext(self) -> bool:
-        return len(self.data) > 0
-        
+        return len(self.stack) > 0
 
 
 # Your BSTIterator object will be instantiated and called as such:

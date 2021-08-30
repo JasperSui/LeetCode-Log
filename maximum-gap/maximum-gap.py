@@ -1,15 +1,15 @@
 class Solution:
     def maximumGap(self, nums: List[int]) -> int:
-        mi, ma, n = min(nums), max(nums), len(nums)
-        if mi == ma: return 0
+        ma, mi, n = max(nums), min(nums), len(nums)
+        if ma == mi: return 0
         bucket_size = math.ceil((ma - mi) / (n - 1))
         min_buckets = [float('inf')] * n
         max_buckets = [float('-inf')] * n
         
         for n in nums:
-            idx = (n - mi) // bucket_size
-            min_buckets[idx] = min(min_buckets[idx], n)
-            max_buckets[idx] = max(max_buckets[idx], n)
+            index = (n - mi) // bucket_size
+            min_buckets[index] = min(min_buckets[index], n)
+            max_buckets[index] = max(max_buckets[index], n)
         
         max_gap = float('-inf')
         prev = mi
@@ -18,3 +18,5 @@ class Solution:
             max_gap = max(max_gap, min_buckets[i] - prev)
             prev = max_buckets[i]
         return max_gap
+        
+        

@@ -14,7 +14,7 @@ class Solution:
         left_depth = depth(root.left)
         right_depth = depth(root.right)
         
-        if left_depth == right_depth: # left tree is perfect binary tree
+        if left_depth == right_depth:
             return pow(2, left_depth) + self.countNodes(root.right)
         else:
             return pow(2, right_depth) + self.countNodes(root.left)

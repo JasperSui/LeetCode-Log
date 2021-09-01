@@ -3,17 +3,19 @@ class Solution:
         self.quicksort(nums, 0, len(nums)-1)
         return nums[len(nums)-k]
     
-    def quicksort(self, nums, l, r):
-        if l >= r: return
-        pos = self.partition(nums, l, r)
-        self.quicksort(nums, l, pos-1)
-        self.quicksort(nums, pos+1, r)
+    def quicksort(self, nums, low, high):
+        if low > high: return
+        pos = self.partition(nums, low, high)
+        self.quicksort(nums, low, pos-1)
+        self.quicksort(nums, pos+1, high)
     
-    def partition(self, nums, l, r):
-        pivot = random.randint(l, r)
-        nums[pivot], nums[r] = nums[r], nums[pivot]
-        for i in range(l, r+1):
-            if nums[r] >= nums[i]:
-                nums[l], nums[i] = nums[i], nums[l]
-                l += 1
-        return l - 1
+    def partition(self, nums, low, high):
+        pivot = random.randint(low, high)
+        nums[pivot], nums[high] = nums[high], nums[pivot]
+        for i in range(low, high+1):
+            if nums[high] >= nums[i]:
+                nums[low], nums[i] = nums[i], nums[low]
+                low += 1
+        return low - 1
+            
+            

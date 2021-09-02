@@ -1,70 +1,7 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        # Solution 1
-        ans = 0 ^ len(nums)
-        for i, n in enumerate(nums):
-            ans ^= i ^ n
-        return ans
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # return sum(range(len(nums)+1)) - sum(nums)
-    
-        # Solution 2
-        # len_n = len(nums)
-        # res = 0 ^ len_n
-        # for i in range(len(nums)):
-        #     res ^= i ^ nums[i]
-        # return res
-    
-        # Solution 3
-        # len_n = len(nums)
-        # res = len_n
-        # for i in range(len(nums)):
-        #     res += i - nums[i]
-        # return res
-        
-        res = len(nums)
+        nums.append(0)
+        ans = 0
         for i in range(len(nums)):
-            res += i - nums[i]
-        return res        
-    
+            ans ^= i ^ nums[i]
+        return ans

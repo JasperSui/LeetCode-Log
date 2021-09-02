@@ -5,92 +5,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         self.res = []
-        def dfs(node, path):
+        def dfs(node, path=[]):
             if not node: return
-            path = path + [str(node.val)]
+            new_path = path + [str(node.val)]
             if not node.left and not node.right:
-                self.res.append("->".join(path))
-            dfs(node.left, path)
-            dfs(node.right, path)
-        dfs(root, [])
+                self.res.append("->".join(new_path))
+            dfs(node.left, new_path)
+            dfs(node.right, new_path)
+        dfs(root)
         return self.res
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # Time: O(n)
-        # Space: O(height)
-        
-        self.res = []
-        def dfs(node, l):
-            if not node: return
-            l = [*l, str(node.val)]
-            if not node.left and not node.right: self.res.append('->'.join(l))
-            else:
-                dfs(node.left, l)
-                dfs(node.right, l)
-        dfs(root, [])
-        return self.res
-    
-        # DFS
-        # res = []
-        # def dfs(node, l):
-        #     if not node: return
-        #     l = [*l, str(node.val)]
-        #     if not node.left and not node.right: res.append('->'.join(l))
-        #     else:
-        #         dfs(node.left, l)
-        #         dfs(node.right, l)
-        # dfs(root, [])
-        # return res
-        
-        # # Iterative
-        # res = []
-        # stack = [(root, [])]
-        # while stack:
-        #     curr, l = stack.pop()
-        #     if curr:
-        #         l = [*l, str(curr.val)]
-        #         if not curr.left and not curr.right: res.append('->'.join(l))
-        #         else:
-        #             stack.append((curr.left, l))
-        #             stack.append((curr.right, l))
-        # return res

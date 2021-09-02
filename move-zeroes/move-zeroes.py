@@ -3,8 +3,12 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        i = 0
-        for j in range(len(nums)):
-            if nums[j] != 0:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
+        insert_index = 0
+        for n in nums:
+            if n != 0:
+                nums[insert_index] = n
+                insert_index += 1
+        
+        while insert_index < len(nums):
+            nums[insert_index] = 0
+            insert_index += 1

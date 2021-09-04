@@ -14,27 +14,27 @@ class RandomizedCollection:
         self.nums.append(val)
         self.pos[val].add(len(self.nums)-1)
         return len(self.pos[val]) == 1
+        
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the collection. Returns true if the collection contained the specified element.
         """
         if self.pos[val]:
-            index = self.pos[val].pop()
-            last = self.nums[-1]
+            last, index = self.nums[-1], self.pos[val].pop()
             self.nums[index] = last
             self.pos[last].add(index)
             self.pos[last].remove(len(self.nums)-1)
             self.nums.pop()
             return True
         return False
+        
 
     def getRandom(self) -> int:
         """
         Get a random element from the collection.
         """
-        return self.nums[random.randint(0, len(self.nums)-1)]
-        
+        return random.choice(self.nums)
 
 
 # Your RandomizedCollection object will be instantiated and called as such:

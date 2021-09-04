@@ -10,7 +10,7 @@ class Solution:
             elif nums[i] < nums[i-1]:
                 up[i] = up[i-1]
                 down[i] = up[i-1] + 1
-            else:
+            elif nums[i] == nums[i-1]:
                 up[i] = up[i-1]
                 down[i] = down[i-1]
         return max(up[-1], down[-1])

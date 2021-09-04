@@ -6,6 +6,7 @@ class RandomizedSet:
         """
         self.nums = []
         self.pos = {}
+        
 
     def insert(self, val: int) -> bool:
         """
@@ -16,17 +17,18 @@ class RandomizedSet:
             self.pos[val] = len(self.nums) - 1
             return True
         return False
+        
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
         if val in self.pos:
-            index, last = self.pos[val], self.nums[-1]
+            last, index = self.nums[-1], self.pos[val]
             self.nums[index] = last
             self.pos[last] = index
-            self.nums.pop()
             self.pos.pop(val)
+            self.nums.pop()
             return True
         return False
         

@@ -1,16 +1,12 @@
 class Solution:
-    def splitArray(self, nums: List[int], k: int) -> int:
-        lower, upper = float('-inf'), 0
-        for n in nums:
-            lower = max(lower, n)
-            upper += n
-        
-        if len(nums) == k: return lower
+    def splitArray(self, nums: List[int], m: int) -> int:
+        lower, upper = max(nums), sum(nums)
+        if len(nums) == m: return lower
         
         low, high = lower, upper
         while low < high:
             mid = low + (high - low) // 2
-            if self.cut(nums, mid) > k:
+            if self.cut(nums, mid) > m:
                 low = mid + 1
             else:
                 high = mid

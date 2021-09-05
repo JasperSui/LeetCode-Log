@@ -5,13 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def sumOfLeftLeaves(self, root: TreeNode) -> int:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         self.ans = 0
-        def dfs(node, calc=False):
+        def dfs(node, is_left=False):
             if not node: return
-            if calc and not node.left and not node.right:
+            if not node.left and not node.right and is_left:
                 self.ans += node.val
             dfs(node.left, True)
-            dfs(node.right)
+            dfs(node.right, False)
         dfs(root)
         return self.ans

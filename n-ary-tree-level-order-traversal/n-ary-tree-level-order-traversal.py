@@ -8,18 +8,11 @@ class Node:
 
 class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
-        if not root: return []
-        stack = [root]
-        res = []
-        while stack:
-            new_stack = []
-            temp = []
-            for node in stack:
-                temp.append(node.val)
-                
-                for child in node.children:
-                    new_stack.append(child)
-            res.append(temp)
-            stack = new_stack
-        return res
-        
+        self.d = defaultdict(list)
+        def dfs(node, depth=1):
+            if not node: return
+            self.d[depth].append(node.val)
+            for child in node.children:
+                dfs(child, depth+1)
+        dfs(root)
+        return list(self.d.values())

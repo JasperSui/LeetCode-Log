@@ -5,18 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def largestValues(self, root: TreeNode) -> List[int]:
-        res = []
-        stack = [root]
-        while stack:
-            new_stack = []
-            curr_max = float('-inf')
-            for node in stack:
-                if node:
-                    curr_max = max(curr_max, node.val)
-                    new_stack.append(node.left)
-                    new_stack.append(node.right)
-            if curr_max != float('-inf'):
-                res.append(curr_max)
-            stack = new_stack
-        return res
+    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+        if not root: return []
+        self.d = defaultdict(lambda: float('-inf'))
+        self.max_depth = float('-inf')
+        def dfs(node, depth=1):
+            if not node: return
+            self.d[depth] = max(self.d[depth], node.val)
+            self.max_depth = max(self.max_depth, depth)
+            dfs(node.left, depth+1)
+            dfs(node.right, depth+1)
+        dfs(root)
+        return [self.d[depth] for depth in range(1, self.max_depth+1)]

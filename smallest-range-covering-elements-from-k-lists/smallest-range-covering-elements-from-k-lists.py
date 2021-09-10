@@ -1,10 +1,9 @@
 class Solution:
     def smallestRange(self, nums: List[List[int]]) -> List[int]:
         pq = [(row[0], i, 0) for i, row in enumerate(nums)]
-        ans = -1e5, 1e5
-        heapq.heapify(pq)
-        
+        ans = -100000, 100000
         right = max(row[0] for row in nums)
+        heapq.heapify(pq)
         while pq:
             left, i, j = heapq.heappop(pq)
             if right - left < ans[1] - ans[0]:

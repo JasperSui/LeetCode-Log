@@ -5,15 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def widthOfBinaryTree(self, root: TreeNode) -> int:
-        left = max_depth = ans = 0
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        left, max_depth, ans = 0, 0, 0
         queue = deque([(root, 0, 0)])
         while queue:
             node, depth, pos = queue.popleft()
             if node:
                 queue.append((node.left, depth+1, pos*2))
                 queue.append((node.right, depth+1, pos*2+1))
-                if max_depth != depth:
+                if depth > max_depth:
                     max_depth = depth
                     left = pos
                 ans = max(ans, pos - left + 1)

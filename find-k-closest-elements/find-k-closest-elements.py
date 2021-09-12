@@ -3,12 +3,11 @@ class Solution:
         if x < min(arr): return arr[:k]
         elif x > max(arr): return arr[-k:]
         
-        left, right = 0, len(arr) - k
-        while left < right:
-            mid = left + (right - left) // 2
+        low, high = 0, len(arr) - k
+        while low < high:
+            mid = low + (high - low) // 2
             if x - arr[mid] > arr[mid+k] - x:
-                left = mid + 1
+                low = mid + 1
             else:
-                right = mid
-        return arr[left:left+k]
-        
+                high = mid
+        return arr[low:low+k]

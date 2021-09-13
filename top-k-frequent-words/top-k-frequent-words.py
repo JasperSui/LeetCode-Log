@@ -13,9 +13,8 @@ class WordFreq:
 
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        d = Counter(words)
         pq = []
-        
+        d = Counter(words)
         for word, count in d.items():
             heapq.heappush(pq, WordFreq(word, count))
             if len(pq) > k:
@@ -26,4 +25,3 @@ class Solution:
             res.append(heapq.heappop(pq).word)
         
         return reversed(res)
-            

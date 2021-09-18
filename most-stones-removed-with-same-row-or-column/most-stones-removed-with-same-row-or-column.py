@@ -5,7 +5,7 @@ class Solution:
         parent = list(range(1000))
         
         def union(x, y):
-            parent[find(y)] = find(x)
+            parent[find(x)] = find(y)
         
         def find(x):
             if parent[x] != x:

@@ -1,12 +1,11 @@
 class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        
-        graph = defaultdict(list)
+        graph = defaultdict(set)
         color = [0 for _ in range(n+1)]
         
-        for a, b in dislikes:
-            graph[a].append(b)
-            graph[b].append(a)
+        for x, y in dislikes:
+            graph[x].add(y)
+            graph[y].add(x)
         
         def dfs(node, c):
             color[node] = c
@@ -23,5 +22,4 @@ class Solution:
             if color[i] == 0 and not dfs(i, 1):
                 return False
         return True
-            
         

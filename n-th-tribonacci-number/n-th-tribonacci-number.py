@@ -1,7 +1,7 @@
 class Solution:
-    def tribonacci(self, n: int, dp={}) -> int:
+    def tribonacci(self, n: int, memo: dict = {}) -> int:
         if n == 0: return 0
-        elif n == 1 or n == 2: return 1
-        if n in dp: return dp[n]
-        dp[n] = self.tribonacci(n-1) + self.tribonacci(n-2) + self.tribonacci(n-3)
-        return dp[n]
+        elif n in (1, 2): return 1
+        elif n in memo: return memo[n]
+        memo[n] = self.tribonacci(n-3, memo) + self.tribonacci(n-2, memo) + self.tribonacci(n-1, memo)
+        return memo[n]

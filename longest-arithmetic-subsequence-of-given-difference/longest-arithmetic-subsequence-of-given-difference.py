@@ -1,7 +1,10 @@
 class Solution:
     def longestSubsequence(self, arr: List[int], difference: int) -> int:
-        res = {}
+        d = {}
         for n in arr:
-            res[n] = res.get(n - difference, 0) + 1
-            print(n, res[n])
-        return max(res.values())
+            count = 1
+            if n-difference in d:
+                count = d[n-difference] + 1
+            d[n] = count
+        return max(d.values())
+        

@@ -1,12 +1,10 @@
 class Solution:
     def smallestSubsequence(self, s: str) -> str:
-        if not s: return ""
-        counts = collections.Counter(s)
-        pos = 0
+        last = {c: i for i, c in enumerate(s)}
+        stack = []
         for i, c in enumerate(s):
-            if c < s[pos]:
-                pos = i
-            counts[c] -= 1
-            if counts[c] == 0:
-                break
-        return s[pos] + self.smallestSubsequence(s[pos+1:].replace(s[pos], ""))
+            if c in stack: continue
+            while stack and stack[-1] > c and i < last[stack[-1]]:
+                stack.pop()
+            stack.append(c)
+        return "".join(stack)

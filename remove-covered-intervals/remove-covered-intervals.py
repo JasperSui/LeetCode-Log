@@ -5,5 +5,5 @@ class Solution:
         for s, e in intervals:
             if stack and stack[-1][0] <= s and stack[-1][1] >= e:
                 continue
-            stack.append([s,e])
+            stack.append([s, e])
         return len(stack)

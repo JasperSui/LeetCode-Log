@@ -1,4 +1,4 @@
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        b = f"{num:b}"
-        return b.count('1') + len(b) - 1
+        n = str(bin(num)[2:])
+        return len(n) + n.count('1') - 1

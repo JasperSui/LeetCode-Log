@@ -1,11 +1,8 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        d = {}
-        for a, b in paths:
-            d[a] = b
-        
-        for a, b in paths:
-            if a not in d:
-                return a
-            if b not in d:
-                return b
+        d = defaultdict(list)
+        for x, y in paths:
+            d[x].append(y)
+            d[y] = d[y]
+        for k, v in d.items():
+            if not v: return k
